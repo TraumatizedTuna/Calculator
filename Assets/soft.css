@@ -1,0 +1,122 @@
+html{
+    background-color: #283745;
+}
+
+::selection{
+    background-color: hsla(298, 0%, 95%, 0.47);
+    color: rgb(255, 255, 255);
+    
+}
+
+input{
+    color: #efc489;
+    background-color: hsl(233, 16%, 40%);
+    border-color: rgba(255, 228, 117, 0.55);
+}
+
+select{
+    color: rgba(194, 208, 255, 0.88);
+    background-color: hsl(242, 15%, 46%);
+    border-color: rgba(180, 169, 126, 0.55);
+}
+
+.button{
+    color: #575757;
+    background-color: #343434;
+    
+    border-color: #5c5c5c;
+}
+
+option{
+    color: #000000;
+    background-color: #4b6984;
+}
+
+.btnActive{
+    color: #ff9d00;
+    
+    border-color: rgba(255, 108, 0, 0.66);
+    
+    background-color: #313f48;
+    
+    transition-duration: .4s;
+}
+
+.btnActive:hover{
+    color: #fff9f0;
+    border-color: #ffc16d;
+    transition-duration: .1s;
+}
+
+.cb{
+    background-color: rgba(255, 217, 132, 0.99);
+    
+    border-color: #f46700;
+}
+
+.cbInactive{
+    background-color: rgba(255, 237, 196, 0.11);
+}
+
+#mainPage{
+    background-color: #ffd695;
+    background-color: #6c4b64;
+    color: #a5b29b;
+}
+
+#ans{
+    color: rgba(199, 222, 199, 0.61);
+    background-color: #456457;
+
+    border-color: rgba(196, 219, 205, 0.46);
+}
+
+#rerender{
+}
+
+
+.extraBox{
+    background-color: #686d7b;
+    color: #272727;
+}
+
+.featCol{
+    background-color: rgba(240, 248, 255, 0.1);
+    color: rgba(255, 255, 255, 0.71);
+}
+
+.featName{
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.featOp{
+    background-color: rgb(42, 57, 106);
+}
+
+.featFunc{
+    background-color: #286a22;
+}
+
+.featName:hover{
+    color: #ffe9be;
+    border-color: #ffe9be;
+}
+
+.extraSubBox{
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.collapseBtn{
+    color: rgba(240, 248, 255, 0.83);
+    background-color: rgba(240, 248, 255, 0.1);
+    border-color: rgba(240, 248, 255, 0.54);
+}
+
+.collapseBtn:hover{
+    background-color: rgba(240, 248, 255, 0.31);
+}
+
+.expr{
+    background-color: rgba(255, 197, 255, 0.27);
+    color: #103f69;
+}

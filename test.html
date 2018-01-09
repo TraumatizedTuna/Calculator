@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js"></script>
+  </head>
+  <body>
+  	<div id="editor" style="height: 60px">abcdefg</div>
+  	<div>sadasd</div>
+    <script>
+    	var editor = ace.edit('editor');
+    	editor.setTheme("ace/theme/monokai");
+      editor.getSession().setMode("ace/mode/javascript");
+    </script>
+  </body>
+</html>

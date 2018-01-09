@@ -1,0 +1,48 @@
+/* greek */
+@font-face {
+  font-family: 'Advent Pro';
+  font-style: normal;
+  font-weight: 200;
+  src: local('Advent Pro ExtraLight'), local('AdventPro-ExtraLight'), url(https://fonts.gstatic.com/s/adventpro/v7/URTSSjIp0Wr-GrjxFdFWnHUHaCieeHb3RUMsatE8Fyo.woff2) format('woff2');
+  unicode-range: U+0370-03FF;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Advent Pro';
+  font-style: normal;
+  font-weight: 200;
+  src: local('Advent Pro ExtraLight'), local('AdventPro-ExtraLight'), url(https://fonts.gstatic.com/s/adventpro/v7/URTSSjIp0Wr-GrjxFdFWnAmpp9opcZztmOKdRoeEHCU.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Advent Pro';
+  font-style: normal;
+  font-weight: 200;
+  src: local('Advent Pro ExtraLight'), local('AdventPro-ExtraLight'), url(https://fonts.gstatic.com/s/adventpro/v7/URTSSjIp0Wr-GrjxFdFWnKEWXqnGSfwnQD3YDlprsb0.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215;
+}
+/* greek */
+@font-face {
+  font-family: 'Advent Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Advent Pro Regular'), local('AdventPro-Regular'), url(https://fonts.gstatic.com/s/adventpro/v7/rjFlM5pzkJXhqq9bH4mmJyEAvth_LlrfE80CYdSH47w.woff2) format('woff2');
+  unicode-range: U+0370-03FF;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Advent Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Advent Pro Regular'), local('AdventPro-Regular'), url(https://fonts.gstatic.com/s/adventpro/v7/Xfe7ShDKddJBJE_WqrWHYCEAvth_LlrfE80CYdSH47w.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Advent Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Advent Pro Regular'), local('AdventPro-Regular'), url(https://fonts.gstatic.com/s/adventpro/v7/rT9jpj7pBpZV6AmssbZKk_k_vArhqVIZ0nv9q090hN8.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215;
+}

@@ -1,0 +1,151 @@
+html{
+    background-color: #000000;
+}
+
+h1{
+    color: #607191;
+}
+
+::selection{
+    background-color: hsla(298, 0%, 95%, 0.47);
+    color: rgb(0, 0, 0);
+    
+    background-color: #dcd6ff;
+}
+
+input{
+    color: #ffdf74;
+    background-color: hsl(0, 0%, 0%);
+    border-color: rgba(255, 228, 117, 0.55);
+}
+
+select{
+    color: #c69974;
+    background-color: hsl(0, 0%, 0%);
+    border-color: rgba(180, 169, 126, 0.55);
+}
+
+.button{
+    color: #575757;
+    background-color: #343434;
+    
+    border-color: #5c5c5c;
+}
+
+option{
+    color: #8b8b8b;
+    background-color: #000000;
+}
+
+.btnActive{
+    color: #ed8000;
+    
+    border-color: rgba(255, 108, 0, 0.44);
+    
+    background-color: #000000;
+    border-width: 2px;
+    
+    transition-duration: .4s;
+}
+
+.btnActive:hover{
+    color: #fff9f0;
+    border-color: #ffc16d;
+    transition-duration: .1s;
+}
+
+.cb{
+    background-color: rgba(255, 217, 132, 0.99);
+    
+    border-color: #f46700;
+}
+
+.cbInactive{
+    background-color: rgba(255, 237, 196, 0.11);
+}
+
+#mainPage{
+    background-color: #000000;
+    color: #a5b29b;
+    border-color: #818066;
+    border-style: solid;
+    border-width: 1px;
+}
+
+#ans{
+    color: #95d395;
+    background-color: #000000;
+
+    border-color: rgba(196, 219, 205, 0.46);
+}
+
+#rerender{
+}
+
+
+.extraBox{
+    background-color: #000000;
+    color: #5f5f5f;
+    
+    border-color: #333333;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.featCol{
+    background-color: rgba(0, 0, 0, 0.1);
+    color: rgba(255, 255, 255, 0.71);
+    
+    border-color: #272727;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.featName{
+    color: rgba(255, 255, 255, 0.65);
+    
+    border-style: solid;
+    border-width: 1px;
+    margin: -1px;
+}
+
+.featOp{
+    background-color: rgb(0, 0, 0);
+    border-color: #445aff;
+}
+
+.featFunc{
+    background-color: #000000;
+    border-color: #4aff3b;
+}
+
+.featName:hover{
+    color: #ffe9be;
+    border-color: #ffe9be;
+}
+
+.extraSubBox{
+    background-color: rgb(0, 0, 0);
+    
+    border-color: #383838;
+    border-style: solid;
+    border-width: 2px;
+}
+
+.collapseBtn{
+    color: rgba(240, 248, 255, 0.64);
+    background-color: rgba(0, 0, 0, 0.1);
+    border-color: rgba(240, 248, 255, 0.56);
+}
+
+.collapseBtn:hover{
+    background-color: rgba(240, 248, 255, 0.31);
+}
+
+.expr{
+    color: #9d7ba0;
+    background-color: rgba(0, 0, 0, 0.17);
+    border-color: #911296;
+    border-style: solid;
+    border-width: 1px;
+}

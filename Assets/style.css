@@ -1,0 +1,276 @@
+html{
+    font-size: 24px;
+    background-color: #d4b89c;
+    font-family: Raleway;
+}
+
+h1{
+    font-family: Poiret One;
+    font-size: 30px;
+    color: #012443;
+}
+
+h2{
+    font-family: Poiret One;
+    font-size: 26px;
+    color: #840000;
+}
+
+.date{
+    color: rgba(0, 0, 0, 0.22);
+    float: right
+}
+
+::selection{
+    background-color: rgba(254, 227, 255, 0.47);
+    color: rgb(255, 255, 255);
+
+}
+
+input{
+    color: #d8ebff;
+    font-size: 4vw;
+    font-family: comfortaa;
+    font-family: Advent Pro;
+    font-family: Roboto Slab;
+    font-weight: 200;
+
+    background-color: #0c4c84;
+
+    border-style: solid;
+    border-color: #060d65;
+    border-width: 2px;
+    border-radius: 5px;
+
+    margin-bottom: 2px;
+    width: 100%;
+}
+
+.inputPref{
+    font-size: 24px;
+    width: auto;
+}
+
+select{
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+
+    background-color: #abb99d;
+
+    border-style: solid;
+    border-color: #6d8b4e;
+    border-width: 1px;
+    border-radius: 5px;
+}
+
+.button{
+    color: #b1b1b1;
+    background-color: #d3d3d3;
+    
+    font-weight: 200;
+    font-size: 32px;
+
+    border-style: solid;
+    border-color: #a0a0a0;
+    border-width: 3px;
+    border-radius: 8px;
+
+    cursor: default;
+
+    margin: 5px;
+    padding: 5px;
+    width: 12x;
+    float: left;
+}
+
+
+.btnActive{
+    color: #f46700;
+
+    border-color: #ff6c00;
+
+    background-color: #ffd318;
+
+    transition-duration: .4s;
+}
+
+.btnActive:hover{
+    color: #fff9f0;
+    border-color: #ffc16d;
+    transition-duration: .1s;
+}
+
+.cb{
+    background-color: rgba(244, 103, 0, 0.66);
+
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #f46700;
+
+    width: 10px;
+    height: 10px;
+
+}
+
+.cbInactive{
+    background-color: rgba(255, 237, 196, 0.11);
+}
+
+.cbInBtn{
+    margin-top: 0px;
+    margin-left: 5px;
+    float: right;
+
+}
+
+#mainPage{
+    background-color: #ebebeb;
+
+    border-radius: 16px;
+    padding: 16px;
+    padding-bottom: 42px;
+
+    width: 90%;
+    margin: auto;
+    margin-top: 5vw;
+}
+
+#ans{
+    color: aliceblue;
+    background-color: #54c193;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #c4dbcd;
+    border-radius: 8px;
+
+    position: relative;
+    padding: 8px;
+    top: 16px;
+    margin: 8px;
+}
+
+#rerender{
+    margin-top: 32px;
+    padding: 4px
+}
+
+
+.extraBox{
+    background-color: #c78c76;
+    border-radius: 16px;
+    
+    font-size: 20px;
+
+    margin: 7%;
+    margin-top: 8px;
+    margin-bottom: 0px;
+    padding: 2%;
+    padding-right: 0;
+
+    overflow: hidden;
+}
+
+.featCol{
+    background-color: rgba(240, 248, 255, 0.34);
+    border-radius: 6px;
+    font-size: 1.45vw;
+
+    float: left;
+    margin: 0.2%;
+    top: 0;
+
+    overflow: hidden;
+}
+
+.featOoo{
+    border-bottom-width: 1px;
+    border-style: solid;
+    border-color: rgb(240, 248, 255);
+
+    margin: 3px;
+    padding: 3px;
+}
+
+.feat{
+    white-space: nowrap;
+    padding-right: 5%;
+    margin-top: 2px;
+    height: 1.5vw;
+}
+
+.featName{
+    border-radius: 5px;
+    text-align: center;
+}
+
+.featOp{
+    background-color: rgb(153, 185, 214);
+}
+
+.featFunc{
+    background-color: #89ce83;
+}
+
+.featName:hover{
+    color: aliceblue;
+    border-color: aliceblue;
+    border-style: solid;
+    border-width: 1px;
+    margin-top: 0px;
+    margin-left: -1px;
+    margin-right: -1px;
+}
+
+.extraSubBox{
+    background-color: rgba(255, 255, 255, 0.28);
+    width: 80%;
+    border-radius: 5px;
+    
+    margin: 10px;
+    padding: 5px;
+}
+
+#aboutBox{
+    font-size: 18px;
+    margin: 32px;
+}
+
+.colBox{
+    margin-top: 8px;
+    overflow: hidden;
+    width: auto;
+}
+
+.collapseBtn{
+    color: aliceblue;
+    font-size: 15px;
+    background-color: rgba(240, 248, 255, 0.1);
+    width: 20px;
+    height: 17px;
+
+    border-color: aliceblue;
+    border-width: 1px;
+    border-style: solid;
+
+    float: left;
+    padding-top: 3px;
+    border-radius: 50%;
+
+    text-align: center;
+    cursor: default;
+}
+
+.collapseBtn:hover{
+    background-color: rgba(240, 248, 255, 0.31);
+}
+
+.expr{
+    background-color: rgba(191, 112, 191, 0.44);
+    border-radius: 6px;
+    padding: 6px;
+    float: left;
+    position: relative;
+
+}

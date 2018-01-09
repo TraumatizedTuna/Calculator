@@ -1,0 +1,81 @@
+function panCanv(el){
+    $.get('Html/panelBoard.html', function(data) {
+          el.innerHTML = data;
+          });
+}
+
+function addPanel(color){
+    $.get('Html/panelSensors.html', function(data) {
+        var style = "";
+        if(color != "default"){
+            style = ' style = "background-color: ';
+            if(color == "random"){
+                style += "hsl(" + Math.random()*255 + "," + Math.random()*80+20 + "%," + Math.sqrt(Math.random())*90+10 + '%)"';
+            }
+            else style += color + '"';
+        }
+        $(".panelBoard").append('<div class="panel" id="pan' + panId + '"' + style + '>' + data + '</div>');
+        $(".borderSensor").mousedown(borderSensorFunc); //Ineffective to set mousedown functions for all border sensors every time? Who cares? Will I fix it? Hmm...
+        $(".btnClose").mousedown(panClose);
+        $(".btnMaximize").mousedown(panMax);
+    });
+    panId++; //Is this effective because it can be done before the $.get is finished?
+}
+
+
+
+
+//Behind the scenes stuff
+var scale = false;
+var pan;
+var edges = { left: false, top: false, right: false, bottom: false };
+
+
+var borderSensorFunc = function(){
+    scale = true;
+    pan = this.parentElement.parentElement;
+
+    edges.left = hasClass(this, "bsl");
+    edges.top = hasClass(this, "bst");
+    edges.right = hasClass(this, "bsr");
+    edges.bottom = hasClass(this, "bsb");
+
+}
+
+var panClose = function(){
+    var panId = this.parentElement.parentElement.parentElement.id;
+    $("#" + panId).remove();
+}
+
+var panMax
+
+document.onmousemove = function(e){
+    if(scale){
+        //TODO: move those two lines to the mousedown event if possible
+        var panRect = pan.getBoundingClientRect();
+        var parRect = pan.parentElement.getBoundingClientRect();
+
+        if(edges.right){
+            var width = 100 * (e.pageX - panRect.left) / parRect.width;
+            pan.style.width = width + "%";
+        }
+
+        if(edges.bottom){
+            var height = 100 * (e.pageY - panRect.top) / parRect.width;
+            pan.style.height = height + "vw";
+        }
+
+    }
+}
+
+document.onmouseup = function(){
+    scale = false;
+}
+
+function hasClass(thing, className){
+    for(var i = 0; i < thing.classList.length; i++){
+        if(thing.classList[i] == className)
+            return true;
+    }
+    return false;
+}

@@ -1,0 +1,135 @@
+html{
+    background-color: #121212;
+}
+
+h1{
+    color: #6c8d7e;
+}
+
+h2{
+    color: #c39848;
+}
+
+.date{
+    color: #1a4469;
+}
+
+::selection{
+    background-color: hsla(298, 0%, 95%, 0.47);
+    color: rgb(255, 255, 255);
+    
+}
+
+input{
+    color: #ffdd6b;
+    background-color: hsl(218, 0%, 20%);
+    border-color: rgba(255, 228, 117, 0.55);
+}
+
+select{
+    color: #b18d6f;
+    background-color: hsl(0, 5%, 8%);
+    border-color: rgba(180, 169, 126, 0.55);
+}
+
+.button{
+    color: #575757;
+    background-color: #343434;
+    
+    border-color: #5c5c5c;
+}
+
+option{
+    color: #000000;
+    background-color: #4b6984;
+}
+
+.btnActive{
+    color: #ed8000;
+    
+    border-color: rgba(255, 108, 0, 0.44);
+    
+    background-color: #2a2a2a;
+    border-width: 2px;
+    
+    transition-duration: .4s;
+}
+
+.btnActive:hover{
+    color: #fff9f0;
+    border-color: #ffc16d;
+    transition-duration: .1s;
+}
+
+.cb{
+    background-color: rgba(255, 217, 132, 0.99);
+    
+    border-color: #f46700;
+}
+
+.cbInactive{
+    /*background-color: rgba(255, 237, 196, 0.11);*/
+    background-color: rgb(74, 15, 1);
+    border-color: #712323;
+}
+#mainPage{
+    background-color: #050014;
+    background-color: #000000;
+    color: #a5b29b;
+}
+
+#ans{
+    color: #c7dec7;
+    background-color: #456457;
+
+    border-color: rgba(196, 219, 205, 0.46);
+}
+
+#rerender{
+}
+
+
+.extraBox{
+    background-color: hsl(0, 0%, 4.5%);
+    color: #5f5f5f;
+}
+
+.featCol{
+    background-color: rgba(240, 248, 255, 0.1);
+    color: rgba(255, 255, 255, 0.71);
+}
+
+.featName{
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.featOp{
+    background-color: rgb(42, 57, 106);
+}
+
+.featFunc{
+    background-color: #286a22;
+}
+
+.featName:hover{
+    color: #ffe9be;
+    border-color: #ffe9be;
+}
+
+.extraSubBox{
+    background-color: rgb(29, 29, 29);
+}
+
+.collapseBtn{
+    color: rgba(240, 248, 255, 0.35);
+    background-color: rgba(240, 248, 255, 0.1);
+    border-color: rgba(240, 248, 255, 0.27);
+}
+
+.collapseBtn:hover{
+    background-color: rgba(240, 248, 255, 0.31);
+}
+
+.expr{
+    background-color: rgba(224, 110, 224, 0.17);
+}

@@ -1,0 +1,125 @@
+html{
+    background-color: #d4b89c;
+}
+
+::selection{
+    background-color: rgba(254, 227, 255, 0.47);
+    color: rgb(255, 255, 255);
+
+}
+
+input{
+    color: #d8ebff;
+
+    background-color: #0c4c84;
+
+    border-color: #060d65;
+    border-width: 2px;
+    border-radius: 5px;
+}
+
+select{
+    color: inherit;
+    background-color: #abb99d;
+}
+
+.button{
+    color: #b1b1b1;
+    background-color: #d3d3d3;
+
+    border-color: #a0a0a0;
+}
+
+
+.btnActive{
+    color: #f46700;
+
+    border-color: #ff6c00;
+
+    background-color: #ffd318;
+
+    transition-duration: .4s;
+}
+
+.btnActive:hover{
+    color: #fff9f0;
+    border-color: #ffc16d;
+    transition-duration: .1s;
+}
+
+.cb{
+    background-color: rgba(244, 103, 0, 0.66);
+
+    border-color: #f46700;
+}
+
+.cbInactive{
+    background-color: rgba(255, 237, 196, 0.11);
+}
+
+
+#mainPage{
+    background-color: #ebebeb;
+}
+
+#ans{
+    color: aliceblue;
+    background-color: #54c193;
+    border-color: #c4dbcd;
+}
+
+#rerender{
+}
+
+
+.extraBox{
+    background-color: #c78c76;
+}
+
+.featCol{
+    background-color: rgba(240, 248, 255, 0.34);
+ }
+
+.featOoo{
+    border-color: rgb(240, 248, 255);
+}
+
+.feat{
+}
+
+.featName{
+}
+
+.featOp{
+    background-color: rgb(153, 185, 214);
+}
+
+.featFunc{
+    background-color: #89ce83;
+}
+
+.featName:hover{
+    color: aliceblue;
+    border-color: aliceblue;
+}
+
+.extraSubBox{
+    background-color: rgba(255, 255, 255, 0.28);
+}
+
+.colBox{
+}
+
+.collapseBtn{
+    color: aliceblue;
+    background-color: rgba(240, 248, 255, 0.1);
+    border-color: aliceblue;
+}
+
+.collapseBtn:hover{
+    background-color: rgba(240, 248, 255, 0.31);
+}
+
+.expr{
+    background-color: rgba(191, 112, 191, 0.44);
+}

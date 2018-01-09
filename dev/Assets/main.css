@@ -1,0 +1,127 @@
+body{
+    background: #000000;
+}
+
+.fwInv{
+    width: 100%;
+}
+
+.cmImg{
+    width: 100%;
+    border-radius: 50%;
+}
+
+.cm{
+    border-radius: 50%;
+    text-align: center;
+    overflow: hidden;
+}
+
+
+.cm0{
+    width: 25%;
+    margin-left: -12.5%;
+    
+    position: absolute;
+}
+
+.cmHover{
+    
+    position: absolute;
+    width: 0vw;
+    height: 0vw;
+    top: 0;
+    border-radius: 50%;
+    
+    top: -1vw;
+    left: -1vw;
+    border-width: 13.5vw;
+    border-style: solid;
+    border-color: rgba(255, 245, 235, 0.3);
+    transition-duration: .4s;
+}
+
+.cmHover:hover{
+    /*width: 68%;
+    border-width: 4vw;
+    */
+    
+    width: 22.8vw;
+    height: 22.8vw;
+    border-width: 2vw;
+    
+    border-color: rgba(255, 247, 238, 0.75);
+    
+    transition-duration: 1s;
+}
+
+
+
+.cmText{
+    
+    
+    margin: auto;
+    width: 100%;
+    top: 42%;
+    position: absolute;
+    
+    color: #eaffe8;
+    font-size: 4vw;
+    font-family: Work Sans;
+    background: rgba(0, 0, 0, 0.8);
+    padding-top: 5%;
+    padding-bottom: 2%
+}
+
+#offsetAndContent{
+    position: absolute;
+    width: 100%;
+    top: 0px;
+}
+
+#content{
+    z-index: 3;
+    position: relative;
+    top: 50%;
+    width: 100%;
+    
+}
+
+#logo{
+    
+    z-index: 0;
+    width: 100%;
+    position: absolute;
+    
+    
+}
+
+#mg{
+    background-image: url(Texture.jpg);
+    background-size: 100%;
+    z-index: 1;
+    width: 100%;
+    position: relative;
+    margin-top: 13%;
+    background-repeat: repeat-y;
+    height: 2000px;
+    margin-bottom: -100%;
+    
+}
+
+#mgEllipse{
+    background-image: url(Ellipse.png);
+    background-size: 100%;
+    z-index: 2;
+    
+    width: 100%;
+    position: absolute;
+    margin-top: 28%;
+    background-repeat: no-repeat;
+    top: 0px;
+
+    
+
+    
+        
+}
