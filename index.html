@@ -122,7 +122,10 @@
                 { name: '⌊', description: 'Floor: ⌊a⌋ is the greatest integer less than or equal to a' },
                 { name: '⌈', description: 'Ceiling: ⌈a⌉ is the smallest integer greater than or equal to a' },
                 { name: 'round', description: 'Round: round(a) is the integer closest to a, fives rounded up' },
-                { name: '¬', description: 'Logical not: ¬t=0, ¬f=1, ∀t>0,f≤0' }
+                { name: '¬', description: 'Logical not: ¬t=0, ¬f=1, ∀t>0,f≤0' },
+                { name: 'date'/*📅'*/, description: '<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse">Javascript date</a>: date(a) returns number of ms between 00:00 jan 1 1970 and a' },
+                { name: 'years', description: 'Years: converts ms to years' },
+
             ],
             [
                 { name: 'Σ', description: 'Sum: Σ(a,b,f(k))=f(a)+f(a+1)+...+f(b-1)+f(b)' },
@@ -290,6 +293,15 @@
         <div id="newsCollapseBtn" class="collapseBtn" onclick="toggleCollapse(newsColEl, newsBoxEl, newsCollapsed)">></div>
         <div class="colBox" id="newsBox">
             <div class="extraSubBox news">
+                <span class="date">2018-02-11</span>
+                <h2>Stupid Inequality Bug Fixed</h2>
+                I just realized that ≤ calls the greater or equal function while ≥ calls the less or equal function. I have now reversed them to fix this.
+                <br>
+                <br>
+                <h2>Hash Encoding</h2>
+                Backwards compatibility for sharing links to expressions is now broken since the <a href="https://en.wikipedia.org/wiki/Fragment_identifier">hash</a> must be <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent">encoded</a> to avoid trouble with special characters. This might also cause problems if you try to write an expression directly to the hash.
+            </div>                   
+            <div class="extraSubBox news">
                 <span class="date">2017-12-10</span>
                 <h2>Syntax highlighting</h2>
                 Added syntax highlighting to the input box using
@@ -313,6 +325,8 @@
                 <span class="date">2017-11-25</span>
                 <h2>Another Important Bugfix</h2>
                 Turns out a+0 and 0+a were simplified to 0 for certain non-zero a.
+                <br>
+                <br>
                 <h2>Simplify a×1</h2>
                 Might sound obvious but 1×a and a×1 will now always be simplified to a.
             </div>
@@ -443,7 +457,7 @@
         //inputBox.value.onchange = parseAndCalc()
 
         if (!(location.hash == '' && location.href[location.href.length - 1] != '#')) {//If hash "exists"
-            editor.setValue(location.hash.substr(1));
+            editor.setValue(decodeURIComponent(location.hash).substr(1));
         }
 
         rerenderStr(editor.getValue());
@@ -470,7 +484,7 @@
                         err('Invalid expression');
                     }
                 }
-                var hash = editor.getValue();
+                var hash = encodeURIComponent(editor.getValue());
                 /*for(var i in strRepl){
                     hash.replace(strRepl[i].to, strRepl[i].from[0]);
                 }*/
@@ -661,11 +675,11 @@
                 jsInd = str.indexOf("js(");
             }
 
-            var dateInd = str.indexOf("date(");
+            var dateInd = str.indexOf("date");//📅(");
             var dateEnd;
             while (dateInd > -1) {
                 dateEnd = skipPars(str, dateInd + 4, true);
-                var dateStr = str.substring(dateInd + 5, dateEnd - 1);
+                var dateStr = str.substring(dateInd + 5, dateEnd - 1) + ' gmt';
                 str = str.substring(0, dateInd) + Date.parse(dateStr) + str.substr(dateEnd);
                 dateInd = str.indexOf("date(");
             }
