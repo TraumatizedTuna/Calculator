@@ -20,9 +20,9 @@ function calc(expr){
                     return less(calc(expr.expr0), calc(expr.expr1));
                 case ">":
                     return greater(calc(expr.expr0), calc(expr.expr1));
-                case "≥":
-                    return lessOrEq(calc(expr.expr0), calc(expr.expr1));
                 case "≤":
+                    return lessOrEq(calc(expr.expr0), calc(expr.expr1));
+                case "≥":
                     return greaterOrEq(calc(expr.expr0), calc(expr.expr1));
                 case "⋏":
                     return and(calc(expr.expr0), calc(expr.expr1));

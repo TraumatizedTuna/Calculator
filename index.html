@@ -1,604 +1,709 @@
-<!DOCTYPE html>
-<!-- saved from url=(0052)http://fxtend.herokuapp.com/Maths/SerCalc/index.html -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+﻿<!DOCTYPE html>
+<html>
 
-        
-        <link rel="stylesheet" href="./index_files/reset.css">
-        <link rel="stylesheet" href="./index_files/style.css">
-        <link rel="stylesheet" href="./index_files/dark.css" id="theme">
+<head>
 
-
-
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="Assets/reset.css">
+    <link rel="stylesheet" href="Assets/style.css">
+    <link rel="stylesheet" href="Assets/dark.css" id="theme">
 
 
-        <!-- import external stuff -->
-        <script src="./index_files/jquery.min.js.ladda ned"></script>
-        <script src="./index_files/BigInteger.min.js.ladda ned"></script>
-
-        <link href="./index_files/css" rel="stylesheet" type="text/css">
-        <link href="./index_files/css(1)" rel="stylesheet" type="text/css">
-        <link href="./index_files/css(2)" rel="stylesheet">
-        <link href="./index_files/css(3)" rel="stylesheet">
-        <link href="./index_files/css(4)" rel="stylesheet">
-        <link href="./index_files/css(5)" rel="stylesheet">
 
 
-        <!-- Local scripts -->
-        <script src="./index_files/tools.js.ladda ned"></script>
-        <script src="./index_files/parseExpr.js.ladda ned"></script>
-        <script src="./index_files/math.js.ladda ned"></script>
-        <script src="./index_files/exprMath.js.ladda ned"></script>
-        <script src="./index_files/arbitrary.js.ladda ned"></script>
-        <script src="./index_files/simpExpr.js.ladda ned"></script>
-        <script src="./index_files/vars.js.ladda ned"></script>
-        <script src="./index_files/toString.js.ladda ned"></script>
 
-        <script src="./index_files/panelTransform.js.ladda ned"></script>
+    <!-- import external stuff -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="http://peterolson.github.com/BigInteger.js/BigInteger.min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js"></script>-->
+    <script src="ace-src-min/ace.js"></script>
+
+    <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa:300,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Advent+Pro:200,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300" rel="stylesheet">
 
 
-    </head>
+    <!-- Local scripts -->
+    <script src="tools.js"></script>
+    <script src="parseExpr.js"></script>
+    <script src="math.js"></script>
+    <script src="exprMath.js"></script>
+    <script src="arbitrary.js"></script>
+    <script src="autoTest.js"></script>
+    <script src="simpExpr.js"></script>
+    <script src="vars.js"></script>
+    <script src="toString.js"></script>
 
-    <body>
-        <div id="mainPage">
-            <input type="text" id="input" value="Π(-3,3,k+(k=0))"><br><div class="button btnEnter btnActive" onclick="parseAndCalc()">Enter<div class="cb cbAuto cbInactive cbInBtn" onclick="toggleEnter()"></div> </div><a id="ans">-36</a><div id="rerender"><a class="expr">Π((0-3),3,(k+(k=0)))</a></div>
+    <script src="http://fxtend.herokuapp.com/Lyrics/Scripts/panelTransform.js"></script>
+
+
+</head>
+
+<body>
+    <div id="mainPage">
+        <div id="input">Π(-3,3,k+(k=0))</div>
+        <br>
+        <div class="button btnEnter btnActive" onclick="parseAndCalc()">Enter
+            <div class="cb cbAuto cbInactive cbInBtn" onclick="toggleEnter()"></div>
         </div>
+        <a id="ans">1.4142135623730951</a>
+        <div id="rerender"></div>
+    </div>
 
-        <div class="extraBox" id="features" onclick="toggleCollapse(featColEl, featBoxEl, featCollapsed)">
-            <h1>Functions and operators by <a href="https://en.wikipedia.org/wiki/Order_of_operations">precedence</a></h1>
-            <div id="featCollapseBtn" class="collapseBtn">&gt;</div>
-            <div class="colBox" id="featBox" style="height: 4px;">
-                <div id="featNames" class="featCol"><div class="featOoo"><div class="featNames"><div class="feat featName featOp">,</div></div></div><div class="featOoo"><div class="featNames"><div class="feat featName featOp">⋎</div><div class="feat featName featOp">⊻</div></div></div><div class="featOoo"><div class="featNames"><div class="feat featName featOp">⋏</div></div></div><div class="featOoo"><div class="featNames"><div class="feat featName featOp">=</div><div class="feat featName featOp">≈</div><div class="feat featName featOp">&lt;</div><div class="feat featName featOp">&gt;</div><div class="feat featName featOp">≤</div><div class="feat featName featOp">≥</div></div></div><div class="featOoo"><div class="featNames"><div class="feat featName featOp">+</div><div class="feat featName featOp">-</div></div></div><div class="featOoo"><div class="featNames"><div class="feat featName featOp">×</div><div class="feat featName featOp">/</div></div></div><div class="featOoo"><div class="featNames"><div class="feat featName featOp">^</div></div></div><div class="featOoo"><div class="featNames"><div class="feat featName featFunc">sin</div><div class="feat featName featFunc">cos</div><div class="feat featName featFunc">tan</div><div class="feat featName featFunc">asin</div><div class="feat featName featFunc">acos</div><div class="feat featName featFunc">atan</div><div class="feat featName featFunc">ln</div><div class="feat featName featFunc">lg</div><div class="feat featName featFunc">√</div><div class="feat featName featFunc">∛</div><div class="feat featName featFunc">∜</div><div class="feat featName featFunc">!</div><div class="feat featName featFunc">‼</div><div class="feat featName featFunc">abs</div><div class="feat featName featFunc">sgn</div><div class="feat featName featFunc">⌊</div><div class="feat featName featFunc">⌈</div><div class="feat featName featFunc">round</div><div class="feat featName featFunc">¬</div></div></div><div class="featOoo"><div class="featNames"><div class="feat featName featFunc">Σ</div><div class="feat featName featFunc">Π</div><div class="feat featName featFunc">lgn</div><div class="feat featName featFunc">P</div><div class="feat featName featFunc">C</div><div class="feat featName featFunc">js</div></div></div></div>
-                <div id="featAlis" class="featCol"><div class="featOoo"><div class="featAlis"><div class="feat featAli" style="background-color: rgba(255,255,255,0.2)"><br></div></div></div><div class="featOoo"><div class="featAlis"><div class="feat featAli" style="background-color: rgba(0,0,0,0)">or, ||</div><div class="feat featAli" style="background-color: rgba(255,255,255,0.2)">xor</div></div></div><div class="featOoo"><div class="featAlis"><div class="feat featAli" style="background-color: rgba(0,0,0,0)">and, &amp;&amp;, ⋏&amp;, &amp;</div></div></div><div class="featOoo"><div class="featAlis"><div class="feat featAli" style="background-color: rgba(255,255,255,0.2)"><br></div><div class="feat featAli" style="background-color: rgba(0,0,0,0)">~</div><div class="feat featAli" style="background-color: rgba(255,255,255,0.2)"><br></div><div class="feat featAli" style="background-color: rgba(0,0,0,0)"><br></div><div class="feat featAli" style="background-color: rgba(255,255,255,0.2)">&lt;_, =&lt;, &lt;⋎=, =⋎&lt;</div><div class="feat featAli" style="background-color: rgba(0,0,0,0)">&gt;_, &gt;=, &gt;⋎=, =⋎&gt;</div></div></div><div class="featOoo"><div class="featAlis"><div class="feat featAli" style="background-color: rgba(255,255,255,0.2)"><br></div><div class="feat featAli" style="background-color: rgba(0,0,0,0)"><br></div></div></div><div class="featOoo"><div class="featAlis"><div class="feat featAli" style="background-color: rgba(255,255,255,0.2)">*, times</div><div class="feat featAli" style="background-color: rgba(0,0,0,0)"><br></div></div></div><div class="featOoo"><div class="featAlis"><div class="feat featAli" style="background-color: rgba(255,255,255,0.2)"><br></div></div></div><div class="featOoo"><div class="featAlis"><div class="feat featAli" style="background-color: rgba(0,0,0,0)">sine</div><div class="feat featAli" style="background-color: rgba(255,255,255,0.2)">cosine</div><div class="feat featAli" style="background-color: rgba(0,0,0,0)">tangent</div><div class="feat featAli" style="background-color: rgba(255,255,255,0.2)"><br></div><div class="feat featAli" style="background-color: rgba(0,0,0,0)"><br></div><div class="feat featAli" style="background-color: rgba(255,255,255,0.2)"><br></div><div class="feat featAli" style="background-color: rgba(0,0,0,0)"><br></div><div class="feat featAli" style="background-color: rgba(255,255,255,0.2)"><br></div><div class="feat featAli" style="background-color: rgba(0,0,0,0)">sqrt, squareroot, rt, root</div><div class="feat featAli" style="background-color: rgba(255,255,255,0.2)">curt, crt, cuberoot, thrt, thirdroot</div><div class="feat featAli" style="background-color: rgba(0,0,0,0)">tert, tesseractroot, frt, fourthroot</div><div class="feat featAli" style="background-color: rgba(255,255,255,0.2)"><br></div><div class="feat featAli" style="background-color: rgba(0,0,0,0)">!!</div><div class="feat featAli" style="background-color: rgba(255,255,255,0.2)"><br></div><div class="feat featAli" style="background-color: rgba(0,0,0,0)">sign</div><div class="feat featAli" style="background-color: rgba(255,255,255,0.2)">floor(, floor, trunc(, trunc</div><div class="feat featAli" style="background-color: rgba(0,0,0,0)">ceiling(, ceiling, ceil(, ceil</div><div class="feat featAli" style="background-color: rgba(255,255,255,0.2)"><br></div><div class="feat featAli" style="background-color: rgba(0,0,0,0)">not</div></div></div><div class="featOoo"><div class="featAlis"><div class="feat featAli" style="background-color: rgba(255,255,255,0.2)">sum, sigma</div><div class="feat featAli" style="background-color: rgba(0,0,0,0)">product, prod</div><div class="feat featAli" style="background-color: rgba(255,255,255,0.2)"><br></div><div class="feat featAli" style="background-color: rgba(0,0,0,0)"><br></div><div class="feat featAli" style="background-color: rgba(255,255,255,0.2)"><br></div><div class="feat featAli" style="background-color: rgba(0,0,0,0)"><br></div></div></div></div>
-                <div id="featDescs" class="featCol"><div class="featOoo"><div class="featDescs"><div class="feat featDesc" style="background-color: rgba(255,255,255,0.2)">Tuple: For multiple arguments or keeping things apart</div></div></div><div class="featOoo"><div class="featDescs"><div class="feat featDesc" style="background-color: rgba(0,0,0,0)">Logical or</div><div class="feat featDesc" style="background-color: rgba(255,255,255,0.2)">Logical xor: a⊻b=(a⋎b)⋏¬(a⋏b)</div></div></div><div class="featOoo"><div class="featDescs"><div class="feat featDesc" style="background-color: rgba(0,0,0,0)">Logical and</div></div></div><div class="featOoo"><div class="featDescs"><div class="feat featDesc" style="background-color: rgba(255,255,255,0.2)">Equals</div><div class="feat featDesc" style="background-color: rgba(0,0,0,0)">Approximately equal to: a≈b ⇔ |a/b-1|&lt;0.001</div><div class="feat featDesc" style="background-color: rgba(255,255,255,0.2)">Less than</div><div class="feat featDesc" style="background-color: rgba(0,0,0,0)">Greater than</div><div class="feat featDesc" style="background-color: rgba(255,255,255,0.2)">Less than or equal to</div><div class="feat featDesc" style="background-color: rgba(0,0,0,0)">Greater than or equal to</div></div></div><div class="featOoo"><div class="featDescs"><div class="feat featDesc" style="background-color: rgba(255,255,255,0.2)">Plus</div><div class="feat featDesc" style="background-color: rgba(0,0,0,0)">Minus</div></div></div><div class="featOoo"><div class="featDescs"><div class="feat featDesc" style="background-color: rgba(255,255,255,0.2)">Times</div><div class="feat featDesc" style="background-color: rgba(0,0,0,0)">Divided by</div></div></div><div class="featOoo"><div class="featDescs"><div class="feat featDesc" style="background-color: rgba(255,255,255,0.2)">To the power of</div></div></div><div class="featOoo"><div class="featDescs"><div class="feat featDesc" style="background-color: rgba(0,0,0,0)">Sine</div><div class="feat featDesc" style="background-color: rgba(255,255,255,0.2)">Cosine</div><div class="feat featDesc" style="background-color: rgba(0,0,0,0)">Tangent: tan(a)=sin(a)/cos(a)</div><div class="feat featDesc" style="background-color: rgba(255,255,255,0.2)">Arcsine</div><div class="feat featDesc" style="background-color: rgba(0,0,0,0)">Arccosine</div><div class="feat featDesc" style="background-color: rgba(255,255,255,0.2)">Arctangent</div><div class="feat featDesc" style="background-color: rgba(0,0,0,0)">Natural logarithm</div><div class="feat featDesc" style="background-color: rgba(255,255,255,0.2)">Decadic logarithm</div><div class="feat featDesc" style="background-color: rgba(0,0,0,0)">Square root: (√a)^2=a</div><div class="feat featDesc" style="background-color: rgba(255,255,255,0.2)">Cube root: (∛a)^3=a</div><div class="feat featDesc" style="background-color: rgba(0,0,0,0)">Tesseract root: Is that even a word?</div><div class="feat featDesc" style="background-color: rgba(255,255,255,0.2)">Factorial: !(a)=Π(1,a,k) <a style="color: red">- !(a) is incorrect notation</a></div><div class="feat featDesc" style="background-color: rgba(0,0,0,0)">Semifactorial: ‼(a)=Π(0,a/2-1,2×(a-k)) <a style="color: red">- ‼(a) is incorrect notation</a></div><div class="feat featDesc" style="background-color: rgba(255,255,255,0.2)">Absolute value: abs(a)=|a|, if a≥0: |a|=a, else: |a|=-a for all real a</div><div class="feat featDesc" style="background-color: rgba(0,0,0,0)">Sign: a&lt;0 ⇔ sgn(a)=-1, a=0 ⇔ sgn(a)=0, a&gt;0 ⇔ sgn(a)=1</div><div class="feat featDesc" style="background-color: rgba(255,255,255,0.2)">Floor: ⌊a⌋ is the greatest integer less than or equal to a</div><div class="feat featDesc" style="background-color: rgba(0,0,0,0)">Ceiling: ⌈a⌉ is the smallest integer greater than or equal to a</div><div class="feat featDesc" style="background-color: rgba(255,255,255,0.2)">Round: round(a) is the integer closest to a, fives rounded up</div><div class="feat featDesc" style="background-color: rgba(0,0,0,0)">Logical not: ¬t=0, ¬f=1, ∀t&gt;0,f≤0</div></div></div><div class="featOoo"><div class="featDescs"><div class="feat featDesc" style="background-color: rgba(255,255,255,0.2)">Sum: Σ(a,b,f(k))=f(a)+f(a+1)+...+f(b-1)+f(b)</div><div class="feat featDesc" style="background-color: rgba(0,0,0,0)">Product: Π(a,b,f(k))=f(a)×f(a+1)×...×f(b-1)×f(b)</div><div class="feat featDesc" style="background-color: rgba(255,255,255,0.2)">Logarithm to base n: lgn(n,x)=ln(x)/ln(n)</div><div class="feat featDesc" style="background-color: rgba(0,0,0,0)">Permutations: P(n,r)=n!/(n-r)!</div><div class="feat featDesc" style="background-color: rgba(255,255,255,0.2)">Combinations: C(n,r)=P(n,r)/r!</div><div class="feat featDesc" style="background-color: rgba(0,0,0,0)">Javascript: js(a) executes a as JS code</div></div></div></div>
-            </div>
+    <div class="extraBox" id="features" onclick="toggleCollapse(featColEl, featBoxEl, featCollapsed)">
+        <h1>Functions and operators by
+            <a href="https://en.wikipedia.org/wiki/Order_of_operations">precedence</a>
+        </h1>
+        <div id="featCollapseBtn" class="collapseBtn">></div>
+        <div class="colBox" id="featBox">
+            <div id="featNames" class="featCol"></div>
+            <div id="featAlis" class="featCol"></div>
+            <div id="featDescs" class="featCol"></div>
         </div>
-        <script>//{
-            var featureEl = document.getElementById("features");
-            var nameEl = document.getElementById("featNames");
-            var aliEl = document.getElementById("featAlis");
-            var descEl = document.getElementById("featDescs");
+    </div>
+    <script>//{
+        var featureEl = document.getElementById("features");
+        var nameEl = document.getElementById("featNames");
+        var aliEl = document.getElementById("featAlis");
+        var descEl = document.getElementById("featDescs");
 
-            var featColEl = document.getElementById("featCollapseBtn");
-            var featBoxEl = document.getElementById("featBox");
+        var featColEl = document.getElementById("featCollapseBtn");
+        var featBoxEl = document.getElementById("featBox");
 
-            var featOpList = [
-                [{name: ',', description: 'Tuple: For multiple arguments or keeping things apart'}],
-                [
-                    {name: '⋎', description: 'Logical or'},
-                    {name: '⊻', description: 'Logical xor: a⊻b=(a⋎b)⋏¬(a⋏b)'},
-                ],
-                [
-                    {name: '⋏', description: 'Logical and'}
-                ],
-                [
-                    {name: '=', description: 'Equals'},
-                    {name: '≈', description: 'Approximately equal to: a≈b ⇔ |a/b-1|<0.001'},
-                    {name: '<', description: 'Less than'},
-                    {name: '>', description: 'Greater than'},
-                    {name: '≤', description: 'Less than or equal to'},
-                    {name: '≥', description: 'Greater than or equal to'}
-                ],
-                [
-                    {name: '+', description: 'Plus'},
-                    {name: '-', description: 'Minus'}
-                ],
-                [
-                    {name: '×', description: 'Times'},
-                    {name: '/', description: 'Divided by'}
-                ],
-                [
-                    {name: '^', description: 'To the power of'}
-                ]
+        var featOpList = [
+            [{ name: ',', description: 'Tuple: For multiple arguments or keeping things apart' }],
+            [
+                { name: '⋎', description: 'Logical or' },
+                { name: '⊻', description: 'Logical xor: a⊻b=(a⋎b)⋏¬(a⋏b)' },
+            ],
+            [
+                { name: '⋏', description: 'Logical and' }
+            ],
+            [
+                { name: '=', description: 'Equals' },
+                { name: '≈', description: 'Approximately equal to: a≈b ⇔ |a/b-1|<0.001' },
+                { name: '<', description: 'Less than' },
+                { name: '>', description: 'Greater than' },
+                { name: '≤', description: 'Less than or equal to' },
+                { name: '≥', description: 'Greater than or equal to' }
+            ],
+            [
+                { name: '+', description: 'Plus' },
+                { name: '-', description: 'Minus' }
+            ],
+            [
+                { name: '×', description: 'Times' },
+                { name: '/', description: 'Divided by' }
+            ],
+            [
+                { name: '^', description: 'To the power of' }
             ]
-            var featFuncList = [
-                [
-                    {name: 'sin', description: 'Sine'},
-                    {name: 'cos', description: 'Cosine'},
-                    {name: 'tan', description: 'Tangent: tan(a)=sin(a)/cos(a)'},
-                    {name: 'asin', description: 'Arcsine'},
-                    {name: 'acos', description: 'Arccosine'},
-                    {name: 'atan', description: 'Arctangent'},
-                    {name: 'ln', description: 'Natural logarithm'},
-                    {name: 'lg', description: 'Decadic logarithm'},
-                    {name: '√', description: 'Square root: (√a)^2=a'},
-                    {name: '∛', description: 'Cube root: (∛a)^3=a'},
-                    {name: '∜', description: 'Tesseract root: Is that even a word?'},
-                    {name: '!', description: 'Factorial: !(a)=Π(1,a,k) <a style="color: red">- !(a) is incorrect notation</a>'},
-                    {name: '‼', description: 'Semifactorial: ‼(a)=Π(0,a/2-1,2×(a-k)) <a style="color: red">- ‼(a) is incorrect notation</a>'},
-                    {name: 'abs', description: 'Absolute value: abs(a)=|a|, if a≥0: |a|=a, else: |a|=-a for all real a'},
-                    {name: 'sgn', description: 'Sign: a<0 ⇔ sgn(a)=-1, a=0 ⇔ sgn(a)=0, a>0 ⇔ sgn(a)=1'},
-                    {name: '⌊', description: 'Floor: ⌊a⌋ is the greatest integer less than or equal to a'},
-                    {name: '⌈', description: 'Ceiling: ⌈a⌉ is the smallest integer greater than or equal to a'},
-                    {name: 'round', description: 'Round: round(a) is the integer closest to a, fives rounded up'},
-                    {name: '¬', description: 'Logical not: ¬t=0, ¬f=1, ∀t>0,f≤0'}
-                ],
-                [
-                    {name: 'Σ', description: 'Sum: Σ(a,b,f(k))=f(a)+f(a+1)+...+f(b-1)+f(b)'},
-                    {name: 'Π', description: 'Product: Π(a,b,f(k))=f(a)×f(a+1)×...×f(b-1)×f(b)'},
-                    {name: 'lgn', description: 'Logarithm to base n: lgn(n,x)=ln(x)/ln(n)'},
-                    {name: 'P', description: 'Permutations: P(n,r)=n!/(n-r)!'},
-                    {name: 'C', description: 'Combinations: C(n,r)=P(n,r)/r!'},
-                    {name: 'js', description: 'Javascript: js(a) executes a as JS code'}
-                ]
-            ];
-            var rowColors = ['rgba(255,255,255,0.2)', 'rgba(0,0,0,0)'];
-            var colorInd = 0;
-            renderFeatures(featOpList, nameEl, descEl, aliEl, ' featOp');
-            renderFeatures(featFuncList, nameEl, descEl, aliEl, ' featFunc');
+        ]
+        var featFuncList = [
+            [
+                { name: 'sin', description: 'Sine' },
+                { name: 'cos', description: 'Cosine' },
+                { name: 'tan', description: 'Tangent: tan(a)=sin(a)/cos(a)' },
+                { name: 'asin', description: 'Arcsine' },
+                { name: 'acos', description: 'Arccosine' },
+                { name: 'atan', description: 'Arctangent' },
+                { name: 'ln', description: 'Natural logarithm' },
+                { name: 'lg', description: 'Decadic logarithm' },
+                { name: '√', description: 'Square root: (√a)^2=a' },
+                { name: '∛', description: 'Cube root: (∛a)^3=a' },
+                { name: '∜', description: 'Tesseract root: Is that even a word?' },
+                { name: '!', description: 'Factorial: !(a)=Π(1,a,k) <a style="color: red">- !(a) is incorrect notation</a>' },
+                { name: '‼', description: 'Semifactorial: ‼(a)=Π(0,a/2-1,2×(a-k)) <a style="color: red">- ‼(a) is incorrect notation</a>' },
+                { name: 'abs', description: 'Absolute value: abs(a)=|a|, if a≥0: |a|=a, else: |a|=-a for all real a' },
+                { name: 'sgn', description: 'Sign: a<0 ⇔ sgn(a)=-1, a=0 ⇔ sgn(a)=0, a>0 ⇔ sgn(a)=1' },
+                { name: '⌊', description: 'Floor: ⌊a⌋ is the greatest integer less than or equal to a' },
+                { name: '⌈', description: 'Ceiling: ⌈a⌉ is the smallest integer greater than or equal to a' },
+                { name: 'round', description: 'Round: round(a) is the integer closest to a, fives rounded up' },
+                { name: '¬', description: 'Logical not: ¬t=0, ¬f=1, ∀t>0,f≤0' },
+                { name: 'date'/*📅'*/, description: '<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse">Javascript date</a>: date(a) returns number of ms between 00:00 jan 1 1970 and a' },
+                { name: 'years', description: 'Years: converts ms to years' },
 
-            function renderFeatures(featList, nameEl, descEl, aliEl, featNameClass = ''){
-                for(var i in featList){
-                    var nameCode = '<div class="featNames">';
-                    var aliCode = '<div class="featAlis">';
-                    var descCode = '<div class="featDescs">';
-                    for(var j in featList[i]){
-                        var style = ' style="background-color: ' + rowColors[colorInd] + '"';
-                        colorInd++;
-                        colorInd %= rowColors.length;
-                        aliCode += '<div class="feat featAli"' + style + '>';
-                        for(var k in strRepl){
-                            var found = false;
-                            if(featList[i][j].name == strRepl[k].to){
-                                aliCode += strRepl[k].from[0];
-                                for(var l = 1; l < strRepl[k].from.length; l++){
-                                    aliCode += ', ' + strRepl[k].from[l];
-                                }
-                                found = true;
-                                break; //Assuming that each operator/function only appears once in strRepl
+            ],
+            [
+                { name: 'Σ', description: 'Sum: Σ(a,b,f(k))=f(a)+f(a+1)+...+f(b-1)+f(b)' },
+                { name: 'Π', description: 'Product: Π(a,b,f(k))=f(a)×f(a+1)×...×f(b-1)×f(b)' },
+                { name: 'lgn', description: 'Logarithm to base n: lgn(n,x)=ln(x)/ln(n)' },
+                { name: 'P', description: 'Permutations: P(n,r)=n!/(n-r)!' },
+                { name: 'C', description: 'Combinations: C(n,r)=P(n,r)/r!' },
+                { name: 'js', description: 'Javascript: js(a) executes a as JS code' }
+            ]
+        ];
+        var rowColors = ['rgba(255,255,255,0.2)', 'rgba(0,0,0,0)'];
+        var colorInd = 0;
+        renderFeatures(featOpList, nameEl, descEl, aliEl, ' featOp');
+        renderFeatures(featFuncList, nameEl, descEl, aliEl, ' featFunc');
+
+        function renderFeatures(featList, nameEl, descEl, aliEl, featNameClass = '') {
+            for (var i in featList) {
+                var nameCode = '<div class="featNames">';
+                var aliCode = '<div class="featAlis">';
+                var descCode = '<div class="featDescs">';
+                for (var j in featList[i]) {
+                    var style = ' style="background-color: ' + rowColors[colorInd] + '"';
+                    colorInd++;
+                    colorInd %= rowColors.length;
+                    aliCode += '<div class="feat featAli"' + style + '>';
+                    for (var k in strRepl) {
+                        var found = false;
+                        if (featList[i][j].name == strRepl[k].to) {
+                            aliCode += strRepl[k].from[0];
+                            for (var l = 1; l < strRepl[k].from.length; l++) {
+                                aliCode += ', ' + strRepl[k].from[l];
                             }
+                            found = true;
+                            break; //Assuming that each operator/function only appears once in strRepl
                         }
-                        if(!found)
-                            aliCode += '<br>';
-                        aliCode += '</div>';
-
-                        nameCode += '<div class="feat featName' + featNameClass + '">' + featList[i][j].name + '</div>';
-                        descCode += '<div class="feat featDesc"' + style + '>' + featList[i][j].description + '</div>';
                     }
-                    nameEl.insertAdjacentHTML('beforeend', '<div class="featOoo">' + nameCode + '</div></div>');
-                    descEl.insertAdjacentHTML('beforeend', '<div class="featOoo">' + descCode + '</div></div>');
-                    aliEl.insertAdjacentHTML('beforeend', '<div class="featOoo">' + aliCode + '</div></div>');
+                    if (!found)
+                        aliCode += '<br>';
+                    aliCode += '</div>';
+
+                    nameCode += '<div class="feat featName' + featNameClass + '">' + featList[i][j].name + '</div>';
+                    descCode += '<div class="feat featDesc"' + style + '>' + featList[i][j].description + '</div>';
                 }
+                nameEl.insertAdjacentHTML('beforeend', '<div class="featOoo">' + nameCode + '</div></div>');
+                descEl.insertAdjacentHTML('beforeend', '<div class="featOoo">' + descCode + '</div></div>');
+                aliEl.insertAdjacentHTML('beforeend', '<div class="featOoo">' + aliCode + '</div></div>');
             }
+        }
 
-            $('.featCol').click(function(e){
-                e.stopPropagation();
-            });
+        $('.featCol').click(function (e) {
+            e.stopPropagation();
+        });
 
-            $('.featName').click(function(e){
-                var el = e.currentTarget;
-                var inputEl = document.getElementById('input');
-                var inpVal = inputEl.value;
-                inpVal = inpVal.substr(0, inputEl.selectionStart) + el.innerHTML + inpVal.substr(inputEl.selectionEnd);
-                inputEl.value = inpVal;
-                onInput();
-            });
+        $('.featName').click(function (e) {
+            var el = e.currentTarget;
+            var inputEl = document.getElementById('input');
+            var inpVal = editor.getValue();
+            inpVal = inpVal.substr(0, inputEl.selectionStart) + el.innerHTML + inpVal.substr(inputEl.selectionEnd);
+            editor.setValue(inpVal);
+            onInput();
+        });
 
-            var featCollapsed = {val: false};
-            toggleCollapse(featColEl, featBoxEl, featCollapsed);
-            function toggleCollapse(colBtnEl, contBoxEl, isCollapsed, colProp = 'height', btnCode = ['v', '>']){
-                if(isCollapsed.val){
-                    contBoxEl.style = colProp + ': auto';
-                    colBtnEl.innerHTML = btnCode[0];
-                }
-                else{
-                    contBoxEl.style = colProp + ': 4px';
-                    colBtnEl.innerHTML = btnCode[1];
-                }
-                isCollapsed.val = !isCollapsed.val;
+        var featCollapsed = { val: false };
+        toggleCollapse(featColEl, featBoxEl, featCollapsed);
+        function toggleCollapse(colBtnEl, contBoxEl, isCollapsed, colProp = 'height', btnCode = ['v', '>']) {
+            if (isCollapsed.val) {
+                contBoxEl.style = colProp + ': auto';
+                colBtnEl.innerHTML = btnCode[0];
             }
+            else {
+                contBoxEl.style = colProp + ': 4px';
+                colBtnEl.innerHTML = btnCode[1];
+            }
+            isCollapsed.val = !isCollapsed.val;
+        }
             //}</script>
 
-        <div class="extraBox" id="prefs">
-            <h1>Preferences</h1>
-            <div id="prefCollapseBtn" class="collapseBtn" onclick="toggleCollapse(prefColEl, prefBoxEl, prefCollapsed)">&gt;</div>
-            <div class="colBox" id="prefBox" style="height: 4px;">
-                <div class="extraSubBox pref">
-                    Theme<br>
-                    <select id="themeDD" onchange="setTheme()">
-                        <option value="bright">Bright</option>
-                        <option value="dark" selected="">Dark</option>
-                        <option value="soft">Soft</option>
-                        <option value="black">Black</option>
-                    </select>
-                </div>
-                <div class="extraSubBox pref">
-                    Press button to calculate
-                    <div class="cb cbAuto cbInactive" onclick="toggleEnter()"></div>
-                </div>
-                <div class="extraSubBox pref">
-                    Interpret text input
-                    <div class="cb cbReRend" onclick="toggleReRend()"></div>
+    <div class="extraBox" id="prefs">
+        <h1>Preferences</h1>
+        <div id="prefCollapseBtn" class="collapseBtn" onclick="toggleCollapse(prefColEl, prefBoxEl, prefCollapsed)">></div>
+        <div class="colBox" id="prefBox">
+            <div class="extraSubBox pref">
+                Theme
+                <br>
+                <select id="themeDD" onchange="setTheme()">
+                    <option value="bright">Bright</option>
+                    <option value="dark" selected>Dark</option>
+                    <option value="soft">Soft</option>
+                    <option value="black">Black</option>
+                </select>
+            </div>
+            <div class="extraSubBox pref">
+                Press button to calculate
+                <div class="cb cbAuto cbInactive" onclick="toggleEnter()"></div>
+            </div>
+            <div class="extraSubBox pref">
+                Interpret text input
+                <div class="cb cbReRend" onclick="toggleReRend()"></div>
 
-                </div>
-                <div class="extraSubBox pref">
-                    Auto complete parenthesis
-                    <div class="cb cbAcPar" onclick="toggleAcPar()"></div>
-                </div>
-                <div class="extraSubBox pref">
-                    Simplify expression
-                    <div class="cb cbSimp" onclick="toggleSimp()"></div>
-                </div>
-                <div class="extraSubBox pref">
-                    If simplified is far from original<br>
-                    <select id="wrongSimpDD">
-                        <option value="alert">Alert</option>
-                        <option value="original">Use original</option>
-                        <option value="simple" selected="">Use simplified</option>
-                    </select><br>
-                    If max time is exceeded<br>
-                    <select id="outOfTimeDD">
-                        <option value="alert">Alert</option>
-                        <option value="original">Use original</option>
-                        <option value="simple" selected="">Use simplified</option>
-                    </select><br>
-                    Max time<br>
-                    <input type="number" value="500" class="inputPref" id="wsTime" onchange="setWrongSimp()">
-                    <select id="wsTimeUnit" onchange="setWrongSimp()">
-                        <option value="0.0001">μs</option>
-                        <option value="1" selected="">ms</option>
-                        <option value="1000">s</option>
-                        <option value="60000">m</option>
-                        <option value="3600000">h</option>
-                    </select>
-                </div>
-                <div class="extraSubBox pref">
-                    Remove zeros in fractions
-                    <div class="cb cbDecFracs cbInactive" onclick="toggleDecFracs()"></div>
-                </div>
+            </div>
+            <div class="extraSubBox pref">
+                Auto complete parenthesis
+                <div class="cb cbAcPar" onclick="toggleAcPar()"></div>
+            </div>
+            <div class="extraSubBox pref">
+                Simplify expression
+                <div class="cb cbSimp" onclick="toggleSimp()"></div>
+            </div>
+            <div class="extraSubBox pref">
+                If simplified is far from original
+                <br>
+                <select id="wrongSimpDD">
+                    <option value="alert">Alert</option>
+                    <option value="original">Use original</option>
+                    <option value="simple" selected>Use simplified</option>
+                </select>
+                <br> If max time is exceeded
+                <br>
+                <select id="outOfTimeDD">
+                    <option value="alert">Alert</option>
+                    <option value="original">Use original</option>
+                    <option value="simple" selected>Use simplified</option>
+                </select>
+                <br> Max time
+                <br>
+                <input type="number" value="500" class="inputPref" id="wsTime" onchange="setWrongSimp()">
+                <select id="wsTimeUnit" onchange="setWrongSimp()">
+                    <option value="0.0001">μs</option>
+                    <option value="1" selected>ms</option>
+                    <option value="1000">s</option>
+                    <option value="60000">m</option>
+                    <option value="3600000">h</option>
+                </select>
+            </div>
+            <div class="extraSubBox pref">
+                Remove zeros in fractions
+                <div class="cb cbDecFracs cbInactive" onclick="toggleDecFracs()"></div>
             </div>
         </div>
-        <script>//{
-            var prefEl = document.getElementById("prefs");
+    </div>
+    <script>//{
+        var prefEl = document.getElementById("prefs");
 
-            var prefColEl = document.getElementById("prefCollapseBtn");
-            var prefBoxEl = document.getElementById("prefBox");
+        var prefColEl = document.getElementById("prefCollapseBtn");
+        var prefBoxEl = document.getElementById("prefBox");
 
-            var prefCollapsed = {val: false};
-            toggleCollapse(prefColEl, prefBoxEl, prefCollapsed);
+        var prefCollapsed = { val: false };
+        toggleCollapse(prefColEl, prefBoxEl, prefCollapsed);
 
 
 
-            function setTheme(name = document.getElementById('themeDD').value){
-                document.getElementById('theme').href = 'Assets/' + name + '.css';
-            }
+        function setTheme(name = document.getElementById('themeDD').value) {
+            document.getElementById('theme').href = 'Assets/' + name + '.css';
+        }
 
-            function setWrongSimp() {
-                var timeUnit = document.getElementById('wsTimeUnit').value;
-                maxTime = document.getElementById('wsTime').value * timeUnit;
-            }
+        function setWrongSimp() {
+            var timeUnit = document.getElementById('wsTimeUnit').value;
+            maxTime = document.getElementById('wsTime').value * timeUnit;
+        }
 
             //}</script>
 
-        <div class="extraBox" id="news">
-            <h1>News</h1>
-            <div id="newsCollapseBtn" class="collapseBtn" onclick="toggleCollapse(newsColEl, newsBoxEl, newsCollapsed)">&gt;</div>
-            <div class="colBox" id="newsBox" style="height: 4px;">
-                <div class="extraSubBox news">
-                    <span class="date">2017-12-05</span>
-                    <h2>Simplification Update</h2>
-                    a^(b/c) is now simplified to (a^b)^(1/c). This might seem stupid and sometimes it is but I think it's worth it for the times when a^b turns out to be something nice.<br>
-                    a^b×a^c is now simplified to a^(b+c)
-                </div>
-                <div class="extraSubBox news">
-                    <span class="date">2017-12-03</span>
-                    <h2>a/1 simplified to a</h2>
-                    Another weird but not incorrect simplification fixed.
-                </div>
-                <div class="extraSubBox news">
-                    <span class="date">2017-11-25</span>
-                    <h2>Another Important Bugfix</h2>
-                    Turns out a+0 and 0+a were simplified to 0 for certain non-zero a.
-                    <h2>Simplify a×1</h2>
-                    Might sound obvious but 1×a and a×1 will now always be simplified to a.
-                </div>
-                <div class="extraSubBox news">
-                    <span class="date">2017-11-10</span>
-                    <h2>Important Bugfix</h2>
-                    I just found out that a^b, was floored for negative b. This is fixed now.
-                </div>
-                <div class="extraSubBox news">
-                    <span class="date">2017-11-09</span>
-                    <h2>Shorter Fractions</h2>
-                    If there are zeros at the end of a numerator or a denominator, those can be cut off while moving the decimal point of the denominator or the numerator respectively. Turn it on in the preferences and try something like 1751/7900 to see how it works.<br><br>
-                    <h2>Printing Roots</h2>
-                    a^(1/2), a^(1/3) and a^(1/4) will now be printed as √a, ∛a and ∜a respectively.
-                </div>
-                <div class="extraSubBox news">
-                    <span class="date">2017-11-08</span>
-                    <h2>Product Simplification</h2>
-                    As promised yesterday :)<br><br>
-                    <h2>BigInt</h2>
-                    I've always been using bigInts but they would usually turn into ordinary JS numbers in the simplification and were thus quite useless. This shouldn't be the case anymore.<br>
-                    Working with bigInts means the calculator can handle arbitrarily big numbers and should avoid certain rounding errors.<br>
-                    Note that bigInts are used in the parsing and simplification only and still have to be converted to JS numbers before the final answer is calculated. Thus, the answer cannot be arbitrarily big, even though the numbers in the simplified expression can.
-                </div>
-                <div class="extraSubBox news">
-                    <span class="date">2017-11-07</span>
-                    <h2>News Box</h2>
-                    Added this news box where I'll tell you about new features and stuff.<br><br>
-                    <h2>Updated Expression Simplification</h2>
-                    Sums and powers can now be simplified. I've also fixed a few weird but not really wrong simplifications.<br>
-                    Product simplification coming soon.<br><br>
-                    <h2>Simplification Settings</h2>
-                    Added settings so you can decide what happens if simplication seems wrong or takes too long time.<br>
-                    When an expression is simplified, its answer will be compared to that of the raw expression unless it exceeds your time limit.
-                </div>
+    <div class="extraBox" id="news">
+        <h1>News</h1>
+        <div id="newsCollapseBtn" class="collapseBtn" onclick="toggleCollapse(newsColEl, newsBoxEl, newsCollapsed)">></div>
+        <div class="colBox" id="newsBox">
+            <div class="extraSubBox news">
+                <span class="date">2018-02-11</span>
+                <h2>Stupid Inequality Bug Fixed</h2>
+                I just realized that ≤ calls the greater or equal function while ≥ calls the less or equal function. I have now reversed them to fix this.
+                <br>
+                <br>
+                <h2>Hash Encoding</h2>
+                Backwards compatibility for sharing links to expressions is now broken since the <a href="https://en.wikipedia.org/wiki/Fragment_identifier">hash</a> must be <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent">encoded</a> to avoid trouble with special characters. This might also cause problems if you try to write an expression directly to the hash.
+            </div>                   
+            <div class="extraSubBox news">
+                <span class="date">2017-12-10</span>
+                <h2>Syntax highlighting</h2>
+                Added syntax highlighting to the input box using
+                <a href="https://ace.c9.io/">Ace</a>.
+                <br> The highlighting language is currently set to Haskell so it might not make sense for JS code. However, I
+                find Haskell more suitable for mathematical expressions since it's a more mathematical language.
+            </div>
+            <div class="extraSubBox news">
+                <span class="date">2017-12-05</span>
+                <h2>Simplification Update</h2>
+                a^(b/c) is now simplified to (a^b)^(1/c). This might seem stupid and sometimes it is but I think it's worth it for the times
+                when a^b turns out to be something nice.
+                <br> a^b×a^c is now simplified to a^(b+c).
+            </div>
+            <div class="extraSubBox news">
+                <span class="date">2017-12-03</span>
+                <h2>a/1 simplified to a</h2>
+                Another weird but not incorrect simplification fixed.
+            </div>
+            <div class="extraSubBox news">
+                <span class="date">2017-11-25</span>
+                <h2>Another Important Bugfix</h2>
+                Turns out a+0 and 0+a were simplified to 0 for certain non-zero a.
+                <br>
+                <br>
+                <h2>Simplify a×1</h2>
+                Might sound obvious but 1×a and a×1 will now always be simplified to a.
+            </div>
+            <div class="extraSubBox news">
+                <span class="date">2017-11-10</span>
+                <h2>Important Bugfix</h2>
+                I just found out that a^b, was floored for negative b. This is fixed now.
+            </div>
+            <div class="extraSubBox news">
+                <span class="date">2017-11-09</span>
+                <h2>Shorter Fractions</h2>
+                If there are zeros at the end of a numerator or a denominator, those can be cut off while moving the decimal point of the
+                denominator or the numerator respectively. Turn it on in the preferences and try something like 1751/7900
+                to see how it works.
+                <br>
+                <br>
+                <h2>Printing Roots</h2>
+                a^(1/2), a^(1/3) and a^(1/4) will now be printed as √a, ∛a and ∜a respectively.
+            </div>
+            <div class="extraSubBox news">
+                <span class="date">2017-11-08</span>
+                <h2>Product Simplification</h2>
+                As promised yesterday :)
+                <br>
+                <br>
+                <h2>BigInt</h2>
+                I've always been using bigInts but they would usually turn into ordinary JS numbers in the simplification and were thus quite
+                useless. This shouldn't be the case anymore.
+                <br> Working with bigInts means the calculator can handle arbitrarily big numbers and should avoid certain rounding
+                errors.
+                <br> Note that bigInts are used in the parsing and simplification only and still have to be converted to JS numbers
+                before the final answer is calculated. Thus, the answer cannot be arbitrarily big, even though the numbers
+                in the simplified expression can.
+            </div>
+            <div class="extraSubBox news">
+                <span class="date">2017-11-07</span>
+                <h2>News Box</h2>
+                Added this news box where I'll tell you about new features and stuff.
+                <br>
+                <br>
+                <h2>Updated Expression Simplification</h2>
+                Sums and powers can now be simplified. I've also fixed a few weird but not really wrong simplifications.
+                <br> Product simplification coming soon.
+                <br>
+                <br>
+                <h2>Simplification Settings</h2>
+                Added settings so you can decide what happens if simplication seems wrong or takes too long time.
+                <br> When an expression is simplified, its answer will be compared to that of the raw expression unless it exceeds
+                your time limit.
             </div>
         </div>
-        <script>//{
-            var newsEl = document.getElementById("news");
+    </div>
+    <script>//{
+        var newsEl = document.getElementById("news");
 
-            var newsColEl = document.getElementById("newsCollapseBtn");
-            var newsBoxEl = document.getElementById("newsBox");
+        var newsColEl = document.getElementById("newsCollapseBtn");
+        var newsBoxEl = document.getElementById("newsBox");
 
-            var newsCollapsed = {val: false};
-            toggleCollapse(newsColEl, newsBoxEl, newsCollapsed);
+        var newsCollapsed = { val: false };
+        toggleCollapse(newsColEl, newsBoxEl, newsCollapsed);
 
             //}</script>
 
 
-        <div class="extraBox" id="about">
-            <h1>About</h1>
-            <div id="aboutCollapseBtn" class="collapseBtn" onclick="toggleCollapse(aboutColEl, aboutBoxEl, aboutCollapsed)">&gt;</div>
-            <div class="colBox" id="aboutBox" style="height: 4px;">
-                This is a hobby project that I've been working on for a while. The original idea was to simplify expressions and use infinite series to get rid of rounding errors. While it does try to simplify your expression (check it out below the enter button), there's no infinite series magic going on behind the scenes... yet...<br>
-                If you write π, it will simply use a predefined constant with a decent amount of decimal places.<br><br>
-
-                Sooo - when will I do the series stuff? Well, first of all, the expression objects that your text input is parsed to kinda suck. Way to many strings and stuff.<br>
-                Secondly, I have <a href="https://github.com/Effektgubben/Noodle">another project</a> that I'm pretty excited about. My hope is that that project will provide a foundation for building a new and more powerful calculator.<br><br>
-
-                Pro tip: don't write js(setTheme('darkOld'))
-            </div>
+    <div class="extraBox" id="about">
+        <h1>About</h1>
+        <div id="aboutCollapseBtn" class="collapseBtn" onclick="toggleCollapse(aboutColEl, aboutBoxEl, aboutCollapsed)">></div>
+        <div class="colBox" id="aboutBox">
+            This is a hobby project that I've been working on for a while. The original idea was to simplify expressions and use infinite
+            series to get rid of rounding errors. While it does try to simplify your expression (check it out below the enter
+            button), there's no infinite series magic going on behind the scenes... yet...
+            <br> If you write π, it will simply use a predefined constant with a decent amount of decimal places.
+            <br>
+            <br> Sooo - when will I do the series stuff? Well, first of all, the expression objects that your text input is parsed
+            to kinda suck. Way to many strings and stuff.
+            <br> Secondly, I have
+            <a href="https://github.com/Effektgubben/Noodle">another project</a> that I'm pretty excited about. My hope is that that project will provide a foundation for
+            building a new and more powerful calculator.
+            <br>
+            <br> Pro tip: don't write js(setTheme('darkOld'))
         </div>
-        <script>//{
-            var aboutEl = document.getElementById("about");
+    </div>
+    <script>//{
+        var aboutEl = document.getElementById("about");
 
-            var aboutColEl = document.getElementById("aboutCollapseBtn");
-            var aboutBoxEl = document.getElementById("aboutBox");
+        var aboutColEl = document.getElementById("aboutCollapseBtn");
+        var aboutBoxEl = document.getElementById("aboutBox");
 
-            var aboutCollapsed = {val: false};
-            toggleCollapse(aboutColEl, aboutBoxEl, aboutCollapsed);
+        var aboutCollapsed = { val: false };
+        toggleCollapse(aboutColEl, aboutBoxEl, aboutCollapsed);
 
 
 
-            function setTheme(name = document.getElementById('themeDD').value){
-                document.getElementById('theme').href = 'Assets/' + name + '.css';
-            }
+        function setTheme(name = document.getElementById('themeDD').value) {
+            document.getElementById('theme').href = 'Assets/' + name + '.css';
+        }
 
             //}</script>
 
 
-        <script>
-            //Variables{
-            var inputBox = document.getElementById("input");
-            var ansBox = document.getElementById("ans");
-            var btnEnter = document.getElementById("btnEnter")
-            var cbAuto = document.getElementById("cbAuto");
-            var rerendBox = document.getElementById("rerender");
-            var uvarInd = 0;
-            var autoCalc = true;
-            var simp = true;
-            var acPar = true;
-            var reRender = true;
+    <script>
+        //Variables{
+        var inputBox = document.getElementById("input");
+        var ansBox = document.getElementById("ans");
+        var btnEnter = document.getElementById("btnEnter")
+        var cbAuto = document.getElementById("cbAuto");
+        var rerendBox = document.getElementById("rerender");
+        var uvarInd = 0;
+        var autoCalc = true;
+        var simp = true;
+        var acPar = true;
+        var reRender = true;
 
-            var maxTime = 500;
-            //}
-            //inputBox.value.onchange = parseAndCalc()
+        //Ace{
+        var Range = require('ace/range').Range;
+        var editor = ace.edit('input');
+        editor.setTheme("ace/theme/monokai");
+        editor.getSession().setMode("ace/mode/haskell");
+        editor.setOptions({
+            fontSize: '3.3vw',
+            maxLines: 18446744073709551616
+        });
+        editor.renderer.setShowGutter(false);
+        //}
 
-            if(!(location.hash == '' && location.href[location.href.length-1] != '#')){//If hash "exists"
-                inputBox.value = location.hash.substr(1);
-            }
+        var maxTime = 500;
+        //}
+        //inputBox.value.onchange = parseAndCalc()
 
-            rerenderStr(inputBox.value);
-            parseAndCalc();
+        if (!(location.hash == '' && location.href[location.href.length - 1] != '#')) {//If hash "exists"
+            editor.setValue(decodeURIComponent(location.hash).substr(1));
+        }
 
-            inputBox.focus();
-            inputBox.selectionStart = 0;
-            inputBox.selectionEnd = inputBox.value.length;
+        rerenderStr(editor.getValue());
+        parseAndCalc();
 
+        /*
+        inputBox.focus();
+        inputBox.selectionStart = 0;
+        inputBox.selectionEnd = inputBox.value.length;
+        */
 
-            var onInput = function() {
-                rerenderStr(inputBox.value);
-                if(autoCalc){
-                    try{
+        var prevStr = '';
+        var lockInput = false;
+        var onInput = function () {
+            var str = editor.getValue();
+            if (!lockInput && str != prevStr) {
+                rerenderStr(str);
+                if (autoCalc) {
+                    try {
                         parseAndCalc();
                     }
-                    catch(e){
-                        console.info('Failed to parse "' + inputBox.value + '"');
+                    catch (e) {
+                        console.info('Failed to parse "' + editor.getValue() + '"');
                         err('Invalid expression');
                     }
                 }
-                var hash = inputBox.value;
+                var hash = encodeURIComponent(editor.getValue());
                 /*for(var i in strRepl){
                     hash.replace(strRepl[i].to, strRepl[i].from[0]);
                 }*/
                 document.location.hash = hash;
             }
-            $('#input').on('input', onInput);
-
-            function toggleEnter(){
-                autoCalc = !autoCalc;
-                //$(".btnEnter").toggleClass("btnActive");
-                $(".cbAuto").toggleClass("cbInactive");
-            }
-
-            var failed = false;
-            function err(msg){
-                ansBox.innerHTML = msg;
-                failed = true;
-            }
+            prevStr = str;
+        }
+        editor.getSession().on('change', onInput);
 
 
 
 
-            function toggleSimp() {
-                simp = !simp;
-                $('.cbSimp').toggleClass('cbInactive');
-                parseAndCalc();
-            }
+        function toggleEnter() {
+            autoCalc = !autoCalc;
+            //$(".btnEnter").toggleClass("btnActive");
+            $(".cbAuto").toggleClass("cbInactive");
+        }
 
-            function parseAndCalc(){
-                failed = false;
-                ansBox.innerHTML = "";
-                if(inputBox.value.length > 0){
-                    var expr = purifyStr(inputBox.value);
-                    expr = parseExpr(expr);
-                    if (simp) {
-                        var wrongSimpOpt = document.getElementById('wrongSimpDD').value;
-                        var ootOpt = document.getElementById('outOfTimeDD').value;
-
-                        var simpExpr = simplify(expr);
-
-                        //Max time stuff {
-                        var time;
-                        var nootAns;
-                        var ootExpr;
-                        var nootExpr;
-
-                        //Set ootExpr{
-                        //If simple should be used for out of time
-                        if (ootOpt !== 'original') {
-                            ootExpr = simpExpr;
-                            nootExpr = expr;
-                        }
-                        else {
-                            ootExpr = expr;
-                            nootExpr = simpExpr;
-                        }
-                        //}
+        var failed = false;
+        function err(msg) {
+            ansBox.innerHTML = msg;
+            failed = true;
+        }
 
 
-                        var startTime = new Date().getTime();
-                        var ootAns = calc(ootExpr);
-                        time = new Date().getTime() - startTime;
-
-                        var oot = time > maxTime;
-
-                        //If oot was calculated quickly enough, calculate nootAns
-                        if (!oot) {
-                            nootAns = calc(nootExpr);
-                        }
-                        else if (ootOpt === 'alert') {
-                            alert('Max time exceeded');
-                            nootAns = 'Timeout';
-                        }
 
 
-                        var origAns;
-                        var simpAns;
+        function toggleSimp() {
+            simp = !simp;
+            $('.cbSimp').toggleClass('cbInactive');
+            parseAndCalc();
+        }
 
+        function parseAndCalc() {
+            failed = false;
+            ansBox.innerHTML = "";
+            if (editor.getValue().length > 0) {
+                var expr = purifyStr(editor.getValue());
+                expr = parseExpr(expr);
+                if (simp) {
+                    var wrongSimpOpt = document.getElementById('wrongSimpDD').value;
+                    var ootOpt = document.getElementById('outOfTimeDD').value;
 
-                        if(ootOpt === 'original'){
-                            origAns = ootAns;
-                            simpAns = nootAns
-                        }
-                        else{
-                            origAns = nootAns;
-                            simpAns = ootAns
-                        }
+                    var simpExpr = simplify(expr);
 
-                        //}
+                    //Max time stuff {
+                    var time;
+                    var nootAns;
+                    var ootExpr;
+                    var nootExpr;
 
-                        var ans;
-                        if (!aprEq(origAns, simpAns) && !oot && !(typeof origAns === 'object' && typeof simpAns === 'object')) {
-                            ans = simpAns;
-                            if (wrongSimpOpt === 'alert') {
-                                alert("Oops! Something went wrong when simplifying your expression.\nThe simplified answer is " + simpAns + " while the non simplified answer is " + origAns + ".\nIf this doesn't feel like an acceptable rounding error, please send me your expression at effektgubben" + " @."[1] + "gmail.com.");
-                                ans = origAns; //Alert means you don't trust simplified answer, right?
-                            }
-                            console.warn('Simplified far from original')
-                        }
-                        else if(oot){
-                            ans = ootAns;
-                        }
-                        else
-                            ans = simpAns;
-                        rerendBox.innerHTML = exprToString(simpExpr, '<a class="expr">', '</a>');
+                    //Set ootExpr{
+                    //If simple should be used for out of time
+                    if (ootOpt !== 'original') {
+                        ootExpr = simpExpr;
+                        nootExpr = expr;
                     }
                     else {
-                        var ans = calc(expr);
-                        rerendBox.innerHTML = exprToString(expr, '<a class="expr">', '</a>');
+                        ootExpr = expr;
+                        nootExpr = simpExpr;
                     }
-                    if(!failed)
-                        ansBox.innerHTML = ans;
+                    //}
+
+
+                    var startTime = new Date().getTime();
+                    var ootAns = calc(ootExpr);
+                    time = new Date().getTime() - startTime;
+
+                    var oot = time > maxTime;
+
+                    //If oot was calculated quickly enough, calculate nootAns
+                    if (!oot) {
+                        nootAns = calc(nootExpr);
+                    }
+                    else if (ootOpt === 'alert') {
+                        alert('Max time exceeded');
+                        nootAns = 'Timeout';
+                    }
+
+
+                    var origAns;
+                    var simpAns;
+
+
+                    if (ootOpt === 'original') {
+                        origAns = ootAns;
+                        simpAns = nootAns
+                    }
+                    else {
+                        origAns = nootAns;
+                        simpAns = ootAns
+                    }
+
+                    //}
+
+                    var ans;
+                    if (!aprEq(origAns, simpAns) && !oot && !(typeof origAns === 'object' && typeof simpAns === 'object')) {
+                        ans = simpAns;
+                        if (wrongSimpOpt === 'alert') {
+                            alert("Oops! Something went wrong when simplifying your expression.\nThe simplified answer is " + simpAns + " while the non simplified answer is " + origAns + ".\nIf this doesn't feel like an acceptable rounding error, please send me your expression at effektgubben" + " @."[1] + "gmail.com.");
+                            ans = origAns; //Alert means you don't trust simplified answer, right?
+                        }
+                        console.warn('Simplified far from original')
+                    }
+                    else if (oot) {
+                        ans = ootAns;
+                    }
+                    else
+                        ans = simpAns;
+                    rerendBox.innerHTML = exprToString(simpExpr, '<a class="expr">', '</a>');
                 }
+                else {
+                    var ans = calc(expr);
+                    rerendBox.innerHTML = exprToString(expr, '<a class="expr">', '</a>');
+                }
+                if (!failed)
+                    ansBox.innerHTML = ans;
             }
+        }
 
 
-            function toggleAcPar(){
-                acPar = !acPar;
-                $('.cbAcPar').toggleClass('cbInactive');
-            }
-            function toggleReRend(){
-                reRender = !reRender;
-                $('.cbReRend').toggleClass('cbInactive');
-            }
-            function rerenderStr(str){
-                var oldCursorPos = inputBox.selectionStart;
-                var oldLen = str.length;
+        function toggleAcPar() {
+            acPar = !acPar;
+            $('.cbAcPar').toggleClass('cbInactive');
+        }
+        function toggleReRend() {
+            reRender = !reRender;
+            $('.cbReRend').toggleClass('cbInactive');
+        }
 
-                if(reRender){
-                    for(var i = 0; i < str.length; i++){
-                        var newStr = "";
-                        var oldLength = 0;
-                        var found = false;
-                        for(var replInd = 0; replInd < strRepl.length && !found; replInd++){
-                            var from = strRepl[replInd].from;
-                            for(var fromInd = 0; fromInd < from.length && !found; fromInd++){
-                                if(begins(from[fromInd], str.substr(i))){
-                                    found = true;
-                                    oldLength = from[fromInd].length;
-                                    newStr = strRepl[replInd].to;
-                                    str = str.substr(0, i) + newStr + str.substr(i + oldLength)
-                                }
+        var oldCursorPos;
+        var oldLen;
+        var newLen;
+        function rerenderStr(str) {
+            oldCursorPos = editor.session.selection.getRange().start.column;
+            oldLen = str.length;
+            var oldStr = str;
+
+
+            if (reRender) {
+                for (var i = 0; i < str.length; i++) {
+                    var newStr = "";
+                    var oldLength = 0;
+                    var found = false;
+                    for (var replInd = 0; replInd < strRepl.length && !found; replInd++) {
+                        var from = strRepl[replInd].from;
+                        for (var fromInd = 0; fromInd < from.length && !found; fromInd++) {
+                            str = editor.getValue();
+                            if (begins(from[fromInd], str.substr(i))) {
+                                found = true;
+                                oldLength = from[fromInd].length;
+                                newStr = strRepl[replInd].to;
+                                //str = str.substr(0, i) + newStr + str.substr(i + oldLength);
+                                var row = 0;//editor.selection.lead.row;
+                                editor.session.replace(new Range(row, i, row, i + oldLength), newStr);
+                                //Compensate for what seems to be a bug in Ace
+                                if (oldLength - newStr.length <= 1)
+                                    editor.session.setRange(new Range(row, i - 1, row, i - 1));
                             }
                         }
                     }
-                    inputBox.value = str;
                 }
-                var newCursorPos = oldCursorPos + str.length - oldLen;
-                if(acPar){
-                    if(str[str.length-1] == '(')
-                        inputBox.value += ')';
-                    else if(str[str.length-1] == '⌊')
-                        inputBox.value += '⌋';
-                    else if(str[str.length-1] == '⌈')
-                        inputBox.value += '⌉';
+            }
+            if (acPar) {
+                /*if (str[str.length - 1] == '(')
+                    editor.setValue(editor.getValue() + ')');
+                else */if (str[str.length - 1] == '⌊') {
+                    editor.setValue(editor.getValue() + '⌋');
 
                 }
-                inputBox.selectionStart = newCursorPos;
-                inputBox.selectionEnd = newCursorPos;
+                else if (str[str.length - 1] == '⌈') {
+                    editor.setValue(editor.getValue() + '⌉');
+
+                }
             }
 
 
-            function purifyStr(str){
-                var jsInd = str.indexOf("js(");
-                var jsEnd;
-                while(jsInd > -1){
-                    jsEnd = skipPars(str, jsInd + 2, true);
-                    var jsStr = str.substring(jsInd + 3, jsEnd - 1);
-                    str = str.substring(0, jsInd) + eval(jsStr) + str.substr(jsEnd);
-                    jsInd = str.indexOf("js(")
-                }
-                str = str.replace(/\ /g, '');//Remove spaces before parsing
-                //Make floor and ceil parseable
-                str = str.replace(/\⌊/g, '⌊(');
-                str = str.replace(/\⌈/g, '⌈(');
-                str = str.replace(/[⌋⌉]/g, ')');
+        }
 
-                return str;
+
+        function purifyStr(str) {
+            var jsInd = str.indexOf("js(");
+            var jsEnd;
+            while (jsInd > -1) {
+                jsEnd = skipPars(str, jsInd + 2, true);
+                var jsStr = str.substring(jsInd + 3, jsEnd - 1);
+                str = str.substring(0, jsInd) + eval(jsStr) + str.substr(jsEnd);
+                jsInd = str.indexOf("js(");
             }
 
-
-            document.onkeypress = function(e){
-                if(e.keyCode == 10 || e.keyCode == 13){//If enter is pressed
-                    location.href = 'https://www.google.se/search?q=' + inputBox.value;
-                }
+            var dateInd = str.indexOf("date");//📅(");
+            var dateEnd;
+            while (dateInd > -1) {
+                dateEnd = skipPars(str, dateInd + 4, true);
+                var dateStr = str.substring(dateInd + 5, dateEnd - 1) + ' gmt';
+                str = str.substring(0, dateInd) + Date.parse(dateStr) + str.substr(dateEnd);
+                dateInd = str.indexOf("date(");
             }
 
-            saveToServer("Hej", "test.txt");
+            str = str.replace(/\ /g, '');//Remove spaces before parsing
+            //Make floor and ceil parseable
+            str = str.replace(/\⌊/g, '⌊(');
+            str = str.replace(/\⌈/g, '⌈(');
+            str = str.replace(/[⌋⌉]/g, ')');
 
-        </script>
+            return str;
+        }
 
-    
-</body></html>
+
+        document.onkeypress = function (e) {
+            if (e.keyCode == 10 || e.keyCode == 13) {//If enter is pressed
+                location.href = 'https://www.google.se/search?q=' + editor.getValue();
+            }
+        }
+
+        saveToServer("Hej", "test.txt");
+
+    </script>
+
+</body>
+
+</html>
