@@ -202,12 +202,14 @@ function simpSum(expr){
             case "-":
                 return simpAdd(sum0, exprNeg(sum1)); //Same for minus
             case "×":
-                if(!containsVar(expr2.expr0, "k")){
+                if (!containsVar(expr2.expr0, "k")) { //Σ(a,b,x+f(k)) = Σ(a,b,x)×Σ(a,b,f(k))
                     return simpMul(expr2.expr0, sum1);
                 }
-                if(!containsVar(expr2.expr1, "k")){
+                if (!containsVar(expr2.expr1, "k")) {
                     return simpMul(expr2.expr1, sum0);
                 }
+                break;
+
             case "/":
                 if(!containsVar(expr2.expr0, "k") || !containsVar(expr2.expr1), "k"){
                     return simpDiv(sum0, sum1);
