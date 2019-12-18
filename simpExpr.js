@@ -211,8 +211,8 @@ function simpSum(expr){
                 break;
 
             case "/":
-                if(!containsVar(expr2.expr0, "k") || !containsVar(expr2.expr1), "k"){
-                    return simpDiv(sum0, sum1);
+                if (!containsVar(expr2.expr1, "k")) {
+                    return simpDiv(sum0, expr2.expr1);
                 }
         }
     }
