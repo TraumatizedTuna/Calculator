@@ -293,6 +293,12 @@
         <div id="newsCollapseBtn" class="collapseBtn" onclick="toggleCollapse(newsColEl, newsBoxEl, newsCollapsed)">></div>
         <div class="colBox" id="newsBox">
             <div class="extraSubBox news">
+                <span class="date">2020-08-25</span>
+                <h2>Important Bugfix</h2>
+                As kindly pointed out in <a href="https://github.com/Effektgubben/Calculator/issues/3">this issue,</a> '*' was changed to '××' rather than '×'.
+
+            </div>
+            <div class="extraSubBox news">
                 <span class="date">2019-12-18</span>
                 <h2>Critical Simplification Bug Fixed</h2>
                 Sums were incorrectly simplified when containing products or quotients of functions of k.
@@ -590,7 +596,7 @@
                     if (!aprEq(origAns, simpAns) && !oot && !(typeof origAns === 'object' && typeof simpAns === 'object')) {
                         ans = simpAns;
                         if (wrongSimpOpt === 'alert') {
-                            alert("Oops! Something went wrong when simplifying your expression.\nThe simplified answer is " + simpAns + " while the non simplified answer is " + origAns + ".\nIf this doesn't feel like an acceptable rounding error, please send me your expression at effektgubben" + " @."[1] + "gmail.com.");
+                            alert("Whoops! Something went wrong when simplifying your expression.\nThe simplified answer is " + simpAns + " while the non simplified answer is " + origAns + ".\nIf this doesn't feel like an acceptable rounding error, please send me your expression at effektgubben" + " @."[1] + "gmail.com.");
                             ans = origAns; //Alert means you don't trust simplified answer, right?
                         }
                         console.warn('Simplified far from original')
@@ -648,7 +654,7 @@
                                 editor.session.replace(new Range(row, i, row, i + oldLength), newStr);
                                 //Compensate for what seems to be a bug in Ace
                                 if (oldLength - newStr.length <= 1)
-                                    editor.session.setRange(new Range(row, i - 1, row, i - 1));
+                                    editor.selection.setRange(new Range(row, i - 0, row, i - 0));
                             }
                         }
                     }
@@ -705,8 +711,6 @@
                 location.href = 'https://www.google.se/search?q=' + editor.getValue();
             }
         }
-
-        saveToServer("Hej", "test.txt");
 
     </script>
 
