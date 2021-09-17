@@ -1,5 +1,5 @@
 function newNum(num){
-    return {type: "num", num: bigInt(num)};
+    return {type: "num", num: BigInt(num)};
 }
 
 function newConst(constName){

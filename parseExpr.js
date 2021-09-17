@@ -19,10 +19,10 @@ var parseFunc = function(before, after, strOp){
 function parseBigNum(strNum){
     var dotInd = strNum.indexOf(".");
     if(dotInd == -1){
-        return newNum(bigInt(strNum));
+        return newNum(BigInt(strNum));
     }
     strNum = strNum.split(".").join("");
-    return newFrac(newNum(bigInt(strNum)), newNum(bigInt(pow(bigInt(10), bigInt(strNum.length - dotInd))))); //TODO: Fix pow to return a bigInt
+    return newFrac(newNum(BigInt(strNum)), newNum(BigInt(pow(BigInt(10), BigInt(strNum.length - dotInd))))); //TODO: Fix pow to return a BigInt
 }
 
 function parseExpr(str){

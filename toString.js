@@ -1,30 +1,30 @@
 var decFracs = false;
-function toggleDecFracs(){
+function toggleDecFracs() {
     decFracs = !decFracs;
     $(".cbDecFracs").toggleClass("cbInactive");
     parseAndCalc();
 }
-function exprToString(expr, pref, suf){
+function exprToString(expr, pref, suf) {
     // In case you don't want any separators
-    if(suf == undefined){
+    if (suf == undefined) {
         suf = "";
-        if(pref == undefined){
+        if (pref == undefined) {
             pref = "";
         }
     }
-    switch(expr.type){
+    switch (expr.type) {
         case "num":
             return pref + biToStr(expr.num) + suf;
         case "unOp":
             return pref + expr.op + exprToString(expr.expr, pref, suf) + suf;
         case "binOp":
-            switch(expr.op){
+            switch (expr.op) {
                 case "/":
-                    if(decFracs && expr.expr0.type == "num" && expr.expr1.type == "num")
+                    if (decFracs && expr.expr0.type == "num" && expr.expr1.type == "num")
                         return pref + shortenFrac(expr) + suf;
                 case "^":
                     var strExp = exprToString(expr.expr1);
-                    switch(strExp){
+                    switch (strExp) {
                         case "(1/2)":
                             return pref + "√" + exprToString(expr.expr0) + suf;
                         case "(1/3)":
@@ -38,7 +38,7 @@ function exprToString(expr, pref, suf){
         case "func":
             var argList = tupleToList(expr.expr);
             var argStr = exprToString(argList[0]);
-            for(var i = 1; i < argList.length; i++){
+            for (var i = 1; i < argList.length; i++) {
                 argStr += ',' + exprToString(argList[i]);
             }
             return pref + expr.func + "(" + argStr + ")" + suf;
@@ -47,37 +47,37 @@ function exprToString(expr, pref, suf){
     }
 }
 
-function shortenFrac(expr){
+function shortenFrac(expr) {
     var numStr = biToStr(expr.expr0.num);
     var denStr = biToStr(expr.expr1.num);
-    if(numStr[numStr.length - 1] == "0"){
+    if (numStr[numStr.length - 1] == "0") {
         [numStr, denStr] = zerosVsPointPos(numStr, denStr);
     }
-    else{
+    else {
         [denStr, numStr] = zerosVsPointPos(denStr, numStr);
     }
     return '(' + numStr + '/' + denStr + ')';
 }
 
-function zerosVsPointPos(zeroStr, pointStr){
+function zerosVsPointPos(zeroStr, pointStr) {
     var i;
     var lim = Math.min(zeroStr.length, pointStr.length);
-    for(i = 1; zeroStr[zeroStr.length - i] == '0' && i < lim; i++);
+    for (i = 1; zeroStr[zeroStr.length - i] == '0' && i < lim; i++);
     zeroStr = zeroStr.substr(0, zeroStr.length + 1 - i);
-    var pointPos = pointStr.length + 1 -i;
-    if(i > 1)
+    var pointPos = pointStr.length + 1 - i;
+    if (i > 1)
         pointStr = pointStr.substr(0, pointPos) + '.' + pointStr.substr(pointPos);
     return [zeroStr, pointStr];
 }
 
-function biToStr(num){
+function biToStr(num) {
     var arithStr = '' + num;
     var fromToStr = num.toString();
     if (arithStr !== 'Infinity') {
-        var arithBI = bigInt(arithStr);
+        var arithBI = BigInt(arithStr);
         //arithStr = arithStr.replace('e+', 'e');
 
-        if (arithBI.eq(num)) {
+        if (arithBI == num) {
             return arithStr;
         }
         else {
@@ -92,8 +92,8 @@ function biToStr(num){
 }
 
 
-function tupleToList(expr){
-    if(expr.op == ","){
+function tupleToList(expr) {
+    if (expr.op == ",") {
         var list = tupleToList(expr.expr0);
         list.push(expr.expr1);
         return list;

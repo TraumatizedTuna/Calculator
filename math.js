@@ -1,7 +1,7 @@
-function calc(expr){
-    switch(expr.type){
+function calc(expr) {
+    switch (expr.type) {
         case "binOp":
-            switch(expr.op){
+            switch (expr.op) {
                 case "+":
                     return add(calc(expr.expr0), calc(expr.expr1));
                 case "-":
@@ -38,53 +38,54 @@ function calc(expr){
                     return Infinity;
             }
         case "unOp":
-            switch(expr.op){
+            var val = Number(calc(expr.expr));
+            switch (expr.op) {
                 case "sin":
-                    return sin(calc(expr.expr));
+                    return sin(val);
                 case "cos":
-                    return cos(calc(expr.expr));
+                    return cos(val);
                 case "tan":
-                    return tan(calc(expr.expr));
+                    return tan(val);
                 case "asin":
-                    return asin(calc(expr.expr));
+                    return asin(val);
                 case "acos":
-                    return acos(calc(expr.expr));
+                    return acos(val);
                 case "atan":
-                    return atan(calc(expr.expr));
+                    return atan(val);
                 case "ln":
-                    return ln(calc(expr.expr));
+                    return ln(val);
                 case "lg":
-                    return lg(calc(expr.expr));
-                    
+                    return lg(val);
+
                 case "abs":
-                    return abs(calc(expr.expr));
+                    return abs(val);
                 case "⌊":
-                    return floor(calc(expr.expr));
+                    return floor(val);
                 case "⌈":
-                    return ceil(calc(expr.expr));
+                    return ceil(val);
                 case "round":
-                    return round(calc(expr.expr));    
+                    return round(val);
                 case "√":
-                    return sqrt(calc(expr.expr));
+                    return sqrt(val);
                 case "∛":
-                    return pow(calc(expr.expr), 1/3);
+                    return pow(val, 1 / 3);
                 case "∜":
-                    return pow(calc(expr.expr), 1/4);
+                    return pow(val, 1 / 4);
                 case "¬":
-                    return not(calc(expr.expr));
+                    return not(val);
                 case "sgn":
-                    return sgn(calc(expr.expr));
+                    return sgn(val);
                 case "!":
-                    return factorial(calc(expr.expr));
+                    return factorial(val); //TODO: BigInt
                 case "‼":
-                    return semifactorial(calc(expr.expr));
+                    return semifactorial(val);
                 case "years":
-                    return years(calc(expr.expr));
+                    return years(val);
                 default:
                     return calc(expr.expr);
             }
         case "func":
-            switch(expr.func){
+            switch (expr.func) {
                 case "Σ":
                     return seq(expr.expr, add);
                 case "Π":
@@ -103,26 +104,36 @@ function calc(expr){
     }
 }
 
-function add(term0, term1){
+function add(term0, term1) {
+    if (typeof term0 !== typeof term1)
+        return Number(term0) + Number(term1);
     return term0 + term1;
 }
 
-function sub(term0, term1){
+function sub(term0, term1) {
+    if (typeof term0 !== typeof term1)
+        return Number(term0) - Number(term1);
     return term0 - term1;
 }
 
-function mul(fac0, fac1){
-    if(fac0 == 0 || fac1 == 0)
+function mul(fac0, fac1) {
+    if (fac0 == 0 || fac1 == 0)
         return 0;
+    if (typeof fac0 !== typeof fac1)
+        return Number(fac0) * Number(fac1);
     return fac0 * fac1;
 }
 
-function div(num, den){
-    return num / den;
+function div(num, den) {
+    return Number(num) / Number(den);
 }
 
 
-var pow = Math.pow;
+function pow(base, exponent) {
+    if (typeof base !== typeof exponent)
+        return Number(base) ** Number(exponent);
+    return base ** exponent;
+}
 
 var abs = Math.abs;
 
@@ -150,108 +161,108 @@ var ceil = Math.ceil;
 
 var round = Math.round;
 
-function lgn(base, arg){
+function lgn(base, arg) {
     return Math.log(arg) / Math.log(base);
 }
 
 
-function factorial(a){
+function factorial(a) {
     var ans = 1;
-    for(; a > 1; a--){
+    for (; a > 1; a--) {
         ans *= a;
     }
     return ans;
 }
 
-function semifactorial(a){
+function semifactorial(a) {
     var ans = 1;
-    for(; a > 1; a-=2){
+    for (; a > 1; a -= 2) {
         ans *= a;
     }
     return ans;
 }
 
-function permutations(n, r){
+function permutations(n, r) {
     return div(factorial(n), factorial(sub(n, r)));
 }
 
-function combinations(n, r){
+function combinations(n, r) {
     return div(permutations(n, r), factorial(r));
 }
 
-function and(a, b){
-    if(a >= 1 && b >= 1)
+function and(a, b) {
+    if (a >= 1 && b >= 1)
         return 1;
     return 0;
 }
 
-function or(a, b){
-    if(a >= 1 || b >= 1)
+function or(a, b) {
+    if (a >= 1 || b >= 1)
         return 1;
     return 0;
 }
 
-function xor(a, b){
-    if(or(a, b) && !and(a, b))
+function xor(a, b) {
+    if (or(a, b) && !and(a, b))
         return 1;
     return 0;
 }
 
-function not(a){
-    if(a >= 1)
+function not(a) {
+    if (a >= 1)
         return 0;
     return 1;
 }
 
-function eq(a, b){
-    if(a == b || (a.value == b.value && a.value != undefined))
+function eq(a, b) {
+    if (a == b || (a.value == b.value && a.value !== undefined))
         return 1;
     return 0;
 }
 
-function less(a, b){
-    if(a < b)
+function less(a, b) {
+    if (a < b)
         return 1;
     return 0;
 }
 
-function greater(a, b){
-    if(a > b)
+function greater(a, b) {
+    if (a > b)
         return 1;
     return 0;
 }
 
-function lessOrEq(a, b){
+function lessOrEq(a, b) {
     return 1 - greater(a, b);
 }
 
-function greaterOrEq(a, b){
+function greaterOrEq(a, b) {
     return 1 - less(a, b);
 }
 
-function compare(a, b){
-    if(less(a, b))
+function compare(a, b) {
+    if (less(a, b))
         return -1;
     return greater(a, b);
 }
 
-function sgn(a){
+function sgn(a) {
     return compare(a, 0);
 }
 
-function aprEq(a, b){
-    if(a == b || abs(sub(div(a, b), 1)) < 0.001) //Equality check for infinite numbers
+function aprEq(a, b) {
+    if (a == b || abs(sub(div(a, b), 1)) < 0.001) //Equality check for infinite numbers
         return 1;
     return 0;
 }
 
 
-function mod(a, b){
+function mod(a, b) {
     return a % b;
 }
 
-function gcd(a, b){
-    if(b == 0)
+function gcd(a, b) {
+    if (b == 0)
         return a;
     return gcd(b, mod(a, b));
 }
@@ -262,23 +273,23 @@ function years(a) {
 }
 
 
-function arr(a, b){
+function arr(a, b) {
     return [a, b];
 }
 
-function seq(expr, op){
+function seq(expr, op) {
     var e0 = expr.expr0;
     var kMax = calc(e0.expr1);
     var ans = id(op);
-    for(k = calc(e0.expr0); k <= kMax; k = add(k, 1)){
+    for (k = calc(e0.expr0); k <= kMax; k = add(k, 1)) {
         ans = op(ans, calc(expr.expr1));
     }
     k = "k";
     return ans;
 }
 
-function id(op){
-    switch(op){
+function id(op) {
+    switch (op) {
         case add:
             return 0;
         default:

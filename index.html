@@ -14,7 +14,7 @@
 
     <!-- import external stuff -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script src="http://peterolson.github.com/BigInteger.js/BigInteger.min.js"></script>
+    <!--<script src="http://peterolson.github.com/BigInteger.js/BigInteger.min.js"></script>-->
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js"></script>-->
     <script src="ace-src-min/ace.js"></script>
 
@@ -28,6 +28,7 @@
 
     <!-- Local scripts -->
     <script src="tools.js"></script>
+    <script src="bigMath.js"></script>
     <script src="parseExpr.js"></script>
     <script src="math.js"></script>
     <script src="exprMath.js"></script>
@@ -44,24 +45,24 @@
 
 <body>
     <div id="mainPage">
-        <div id="input">Π(-3,3,k+(k=0))</div>
+        <div id="input" title="Please insert mathy things">Π(-3,3,k+(k=0))</div>
         <br>
         <div class="button btnEnter btnActive" onclick="parseAndCalc()">Enter
-            <div class="cb cbAuto cbInactive cbInBtn" onclick="toggleEnter()"></div>
+            <div class="cb cbAuto cbInactive cbInBtn" onclick="toggleEnter()" title="Toggle automatic evaluation"></div>
         </div>
-        <a id="ans">1.4142135623730951</a>
+        <a id="ans" title="Answer in decimal form">1.4142135623730951</a>
         <div id="rerender"></div>
     </div>
 
-    <div class="extraBox" id="features" onclick="toggleCollapse(featColEl, featBoxEl, featCollapsed)">
+    <div class="extraBox" id="features" onclick="toggleCollapse(featColEl, featBoxEl, featCollapsed)" title="This is a great place to get started">
         <h1>Functions and operators by
             <a href="https://en.wikipedia.org/wiki/Order_of_operations">precedence</a>
         </h1>
         <div id="featCollapseBtn" class="collapseBtn">></div>
         <div class="colBox" id="featBox">
-            <div id="featNames" class="featCol"></div>
-            <div id="featAlis" class="featCol"></div>
-            <div id="featDescs" class="featCol"></div>
+            <div id="featNames" class="featCol" title="Name: Type this or click the button to use"></div>
+            <div id="featAlis" class="featCol" title="Alias: If you type one of these it'll automatically change into the name on the left"></div>
+            <div id="featDescs" class="featCol" title="Description: Do I really need to describe the description?"></div>
         </div>
     </div>
     <script>//{
@@ -203,11 +204,11 @@
         }
             //}</script>
 
-    <div class="extraBox" id="prefs">
+    <div class="extraBox" id="prefs" title="Not happy with the behavior of my calculator? If you're lucky I might just have a setting for it">
         <h1>Preferences</h1>
         <div id="prefCollapseBtn" class="collapseBtn" onclick="toggleCollapse(prefColEl, prefBoxEl, prefCollapsed)">></div>
         <div class="colBox" id="prefBox">
-            <div class="extraSubBox pref">
+            <div class="extraSubBox pref" title="Not a fan of dark colors? Try something else">
                 Theme
                 <br>
                 <select id="themeDD" onchange="setTheme()">
@@ -217,24 +218,24 @@
                     <option value="black">Black</option>
                 </select>
             </div>
-            <div class="extraSubBox pref">
+            <div class="extraSubBox pref" title="Into heavy math? You might wanna turn this on for a more responsive (and boring) experience">
                 Press button to calculate
                 <div class="cb cbAuto cbInactive" onclick="toggleEnter()"></div>
             </div>
-            <div class="extraSubBox pref">
+            <div class="extraSubBox pref" title="Don't want my calculator to mess with your beautiful input? I recommend leaving this on in most cases but suit yourself">
                 Interpret text input
                 <div class="cb cbReRend" onclick="toggleReRend()"></div>
 
             </div>
-            <div class="extraSubBox pref">
+            <div class="extraSubBox pref" title="I recall this being a little buggy when doing some weird stuff... Leave it on as long as your parenthesis act nice">
                 Auto complete parenthesis
                 <div class="cb cbAcPar" onclick="toggleAcPar()"></div>
             </div>
-            <div class="extraSubBox pref">
+            <div class="extraSubBox pref" title="This is sort of the whole point of this calculator but sure, go ahead and turn it off">
                 Simplify expression
-                <div class="cb cbSimp" onclick="toggleSimp()"></div>
+                <div class="cb cbSimp" onclick="toggleSimp()" title="Really?"></div>
             </div>
-            <div class="extraSubBox pref">
+            <div class="extraSubBox pref" title="This stuff is mostly for debugging, except the Max time, which you might wanna increase for heavier calculations">
                 If simplified is far from original
                 <br>
                 <select id="wrongSimpDD">
@@ -251,18 +252,18 @@
                 </select>
                 <br> Max time
                 <br>
-                <input type="number" value="500" class="inputPref" id="wsTime" onchange="setWrongSimp()">
-                <select id="wsTimeUnit" onchange="setWrongSimp()">
-                    <option value="0.0001">μs</option>
-                    <option value="1" selected>ms</option>
-                    <option value="1000">s</option>
-                    <option value="60000">m</option>
-                    <option value="3600000">h</option>
+                <input type="number" value="500" class="inputPref" id="wsTime" onchange="setWrongSimp()" title="If it takes longer than this, the calculator will simply give up">
+                <select id="wsTimeUnit" onchange="setWrongSimp()" title="Time unit for max time, just so you won't have to type a bunch of zeros">
+                    <option value="0.0001" title="Microseconds">μs</option>
+                    <option value="1" title="Milliseconds" selected>ms</option>
+                    <option value="1000" title="Seconds, duh">s</option>
+                    <option value="60000" title="Minutes... why though?">m</option>
+                    <option value="3600000" title="No.">h</option>
                 </select>
             </div>
-            <div class="extraSubBox pref">
+            <div class="extraSubBox pref" title="Please, please, please enable this one">
                 Remove zeros in fractions
-                <div class="cb cbDecFracs cbInactive" onclick="toggleDecFracs()"></div>
+                <div class="cb cbDecFracs cbInactive" onclick="toggleDecFracs()" title="Yassss click it"></div>
             </div>
         </div>
     </div>
@@ -288,10 +289,16 @@
 
             //}</script>
 
-    <div class="extraBox" id="news">
+    <div class="extraBox" id="news" title="This is where I explain my roughly anual updates">
         <h1>News</h1>
         <div id="newsCollapseBtn" class="collapseBtn" onclick="toggleCollapse(newsColEl, newsBoxEl, newsCollapsed)">></div>
         <div class="colBox" id="newsBox">
+            <div class="extraSubBox news">
+                <span class="date">2021-09-17</span>
+                <h2>Switching from bigInt to BigInt</h2>
+                The old bigInt library I was using has been removed, presumably because the built-in BigInt is better. This broke my entire calculator but I've changed a bunch of syntax and it seems to work again.
+
+            </div>
             <div class="extraSubBox news">
                 <span class="date">2020-08-25</span>
                 <h2>Important Bugfix</h2>
@@ -413,9 +420,8 @@
             <br> If you write π, it will simply use a predefined constant with a decent amount of decimal places.
             <br>
             <br> Sooo - when will I do the series stuff? Well, first of all, the expression objects that your text input is parsed
-            to kinda suck. Way to many strings and stuff.
-            <br> Secondly, I have
-            <a href="https://github.com/Effektgubben/Noodle">another project</a> that I'm pretty excited about. My hope is that that project will provide a foundation for
+            to kinda suck. Way too many strings and stuff.
+            <br> Second, I have <a href="https://github.com/Effektgubben/Noodle">another project</a> that I'm pretty excited about. My hope is that that project will provide a foundation for
             building a new and more powerful calculator.
             <br>
             <br> Pro tip: don't write js(setTheme('darkOld'))
@@ -606,11 +612,11 @@
                     }
                     else
                         ans = simpAns;
-                    rerendBox.innerHTML = exprToString(simpExpr, '<a class="expr">', '</a>');
+                    rerendBox.innerHTML = exprToString(simpExpr, '<a class="expr" title="Simplified expression, perhaps a nice fraction if you\'re lucky">', '</a>');
                 }
                 else {
                     var ans = calc(expr);
-                    rerendBox.innerHTML = exprToString(expr, '<a class="expr">', '</a>');
+                    rerendBox.innerHTML = exprToString(expr, '<a class="expr" title="Enable simplify to see simplified expression here">', '</a>');
                 }
                 if (!failed)
                     ansBox.innerHTML = ans;

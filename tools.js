@@ -40,5 +40,3 @@ function skipPars(str, startInd, forw){
     }
     return startInd;
 }
-
-
