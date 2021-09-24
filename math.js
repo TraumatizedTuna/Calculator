@@ -81,6 +81,16 @@ function calc(expr) {
                     return semifactorial(val);
                 case "years":
                     return years(val);
+                case "weeks":
+                    return weeks(val);
+                case "days":
+                    return days(val);
+                case "hours":
+                    return hours(val);
+                case "minutes":
+                    return minutes(val);
+                case "seconds":
+                    return seconds(val);
                 default:
                     return calc(expr.expr);
             }
@@ -272,6 +282,25 @@ function years(a) {
     return a / 31557600000;
 }
 
+function weeks(a) {
+    return a / 604800000;
+}
+
+function days(a) {
+    return a / 86400000;
+}
+
+function hours(a) {
+    return a / 3600000;
+}
+
+function minutes(a) {
+    return a / 60000;
+}
+
+function seconds(a) {
+    return a / 1000;
+}
 
 function arr(a, b) {
     return [a, b];

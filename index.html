@@ -45,7 +45,7 @@
 
 <body>
     <div id="mainPage">
-        <div id="input" title="Please insert mathy things">Π(-3,3,k+(k=0))</div>
+        <div id="input" title="Please insert mathy things"></div>
         <br>
         <div class="button btnEnter btnActive" onclick="parseAndCalc()">Enter
             <div class="cb cbAuto cbInactive cbInBtn" onclick="toggleEnter()" title="Toggle automatic evaluation"></div>
@@ -54,15 +54,18 @@
         <div id="rerender"></div>
     </div>
 
-    <div class="extraBox" id="features" onclick="toggleCollapse(featColEl, featBoxEl, featCollapsed)" title="This is a great place to get started">
+    <div class="extraBox" id="features" onclick="toggleCollapse(featColEl, featBoxEl, featCollapsed)"
+        title="This is a great place to get started">
         <h1>Functions and operators by
             <a href="https://en.wikipedia.org/wiki/Order_of_operations">precedence</a>
         </h1>
         <div id="featCollapseBtn" class="collapseBtn">></div>
         <div class="colBox" id="featBox">
             <div id="featNames" class="featCol" title="Name: Type this or click the button to use"></div>
-            <div id="featAlis" class="featCol" title="Alias: If you type one of these it'll automatically change into the name on the left"></div>
-            <div id="featDescs" class="featCol" title="Description: Do I really need to describe the description?"></div>
+            <div id="featAlis" class="featCol"
+                title="Alias: If you type one of these it'll automatically change into the name on the left"></div>
+            <div id="featDescs" class="featCol" title="Description: Do I really need to describe the description?">
+            </div>
         </div>
     </div>
     <script>//{
@@ -125,8 +128,12 @@
                 { name: 'round', description: 'Round: round(a) is the integer closest to a, fives rounded up' },
                 { name: '¬', description: 'Logical not: ¬t=0, ¬f=1, ∀t>0,f≤0' },
                 { name: 'date'/*📅'*/, description: '<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse">Javascript date</a>: date(a) returns number of ms between 00:00 jan 1 1970 and a' },
-                { name: 'years', description: 'Years: converts ms to years' },
-
+                { name: 'years', description: 'Years: ms to years' },
+                { name: 'weeks', description: 'Weeks: ms to weeks' },
+                { name: 'days', description: 'Days: ms to days' },
+                { name: 'hours', description: 'Hours: ms to hours' },
+                { name: 'minutes', description: 'Minutes: ms to minutes' },
+                { name: 'seconds', description: 'Seconds: ms to seconds' },
             ],
             [
                 { name: 'Σ', description: 'Sum: Σ(a,b,f(k))=f(a)+f(a+1)+...+f(b-1)+f(b)' },
@@ -204,9 +211,11 @@
         }
             //}</script>
 
-    <div class="extraBox" id="prefs" title="Not happy with the behavior of my calculator? If you're lucky I might just have a setting for it">
+    <div class="extraBox" id="prefs"
+        title="Not happy with the behavior of my calculator? If you're lucky I might just have a setting for it">
         <h1>Preferences</h1>
-        <div id="prefCollapseBtn" class="collapseBtn" onclick="toggleCollapse(prefColEl, prefBoxEl, prefCollapsed)">></div>
+        <div id="prefCollapseBtn" class="collapseBtn" onclick="toggleCollapse(prefColEl, prefBoxEl, prefCollapsed)">>
+        </div>
         <div class="colBox" id="prefBox">
             <div class="extraSubBox pref" title="Not a fan of dark colors? Try something else">
                 Theme
@@ -218,24 +227,29 @@
                     <option value="black">Black</option>
                 </select>
             </div>
-            <div class="extraSubBox pref" title="Into heavy math? You might wanna turn this on for a more responsive (and boring) experience">
+            <div class="extraSubBox pref"
+                title="Into heavy math? You might wanna turn this on for a more responsive (and boring) experience">
                 Press button to calculate
                 <div class="cb cbAuto cbInactive" onclick="toggleEnter()"></div>
             </div>
-            <div class="extraSubBox pref" title="Don't want my calculator to mess with your beautiful input? I recommend leaving this on in most cases but suit yourself">
+            <div class="extraSubBox pref"
+                title="Don't want my calculator to mess with your beautiful input? I recommend leaving this on in most cases but suit yourself">
                 Interpret text input
                 <div class="cb cbReRend" onclick="toggleReRend()"></div>
 
             </div>
-            <div class="extraSubBox pref" title="I recall this being a little buggy when doing some weird stuff... Leave it on as long as your parenthesis act nice">
+            <div class="extraSubBox pref"
+                title="I recall this being a little buggy when doing some weird stuff... Leave it on as long as your parenthesis act nice">
                 Auto complete parenthesis
                 <div class="cb cbAcPar" onclick="toggleAcPar()"></div>
             </div>
-            <div class="extraSubBox pref" title="This is sort of the whole point of this calculator but sure, go ahead and turn it off">
+            <div class="extraSubBox pref"
+                title="This is sort of the whole point of this calculator but sure, go ahead and turn it off">
                 Simplify expression
                 <div class="cb cbSimp" onclick="toggleSimp()" title="Really?"></div>
             </div>
-            <div class="extraSubBox pref" title="This stuff is mostly for debugging, except the Max time, which you might wanna increase for heavier calculations">
+            <div class="extraSubBox pref"
+                title="This stuff is mostly for debugging, except the Max time, which you might wanna increase for heavier calculations">
                 If simplified is far from original
                 <br>
                 <select id="wrongSimpDD">
@@ -252,8 +266,10 @@
                 </select>
                 <br> Max time
                 <br>
-                <input type="number" value="500" class="inputPref" id="wsTime" onchange="setWrongSimp()" title="If it takes longer than this, the calculator will simply give up">
-                <select id="wsTimeUnit" onchange="setWrongSimp()" title="Time unit for max time, just so you won't have to type a bunch of zeros">
+                <input type="number" value="500" class="inputPref" id="wsTime" onchange="setWrongSimp()"
+                    title="If it takes longer than this, the calculator will simply give up">
+                <select id="wsTimeUnit" onchange="setWrongSimp()"
+                    title="Time unit for max time, just so you won't have to type a bunch of zeros">
                     <option value="0.0001" title="Microseconds">μs</option>
                     <option value="1" title="Milliseconds" selected>ms</option>
                     <option value="1000" title="Seconds, duh">s</option>
@@ -289,55 +305,71 @@
 
             //}</script>
 
-    <div class="extraBox" id="news" title="This is where I explain my roughly anual updates">
+    <div class="extraBox" id="news" title="This is where I explain my roughly annual updates">
         <h1>News</h1>
-        <div id="newsCollapseBtn" class="collapseBtn" onclick="toggleCollapse(newsColEl, newsBoxEl, newsCollapsed)">></div>
+        <div id="newsCollapseBtn" class="collapseBtn" onclick="toggleCollapse(newsColEl, newsBoxEl, newsCollapsed)">>
+        </div>
         <div class="colBox" id="newsBox">
+            <div class="extraSubBox news">
+                <span class="date">2021-09-24</span>
+                <h2>date() Fix and Improvement</h2>
+                The date() function seemed to only work properly for one instance at a time. I've fixed that and added the keyword 'now' to get the current time. I also added some more time conversion functions, although I deliberately excluded months since they vary so much in length.
+                
+            </div>
             <div class="extraSubBox news">
                 <span class="date">2021-09-17</span>
                 <h2>Switching from bigInt to BigInt</h2>
-                The old bigInt library I was using has been removed, presumably because the built-in BigInt is better. This broke my entire calculator but I've changed a bunch of syntax and it seems to work again.
+                The old bigInt library I was using has been removed, presumably because the built-in BigInt is better.
+                This broke my entire calculator but I've changed a bunch of syntax and it seems to work again.
 
             </div>
             <div class="extraSubBox news">
                 <span class="date">2020-08-25</span>
                 <h2>Important Bugfix</h2>
-                As kindly pointed out in <a href="https://github.com/Effektgubben/Calculator/issues/3">this issue,</a> '*' was changed to '××' rather than '×'.
+                As kindly pointed out in <a href="https://github.com/Effektgubben/Calculator/issues/3">this issue,</a>
+                '*' was changed to '××' rather than '×'.
 
             </div>
             <div class="extraSubBox news">
                 <span class="date">2019-12-18</span>
                 <h2>Critical Simplification Bug Fixed</h2>
                 Sums were incorrectly simplified when containing products or quotients of functions of k.
-                
+
             </div>
             <div class="extraSubBox news">
                 <span class="date">2018-02-11</span>
                 <h2>Stupid Inequality Bug Fixed</h2>
-                I just realized that ≤ calls the greater or equal function while ≥ calls the less or equal function. I have now reversed them to fix this.
+                I just realized that ≤ calls the greater or equal function while ≥ calls the less or equal function. I
+                have now reversed them to fix this.
                 <br>
                 <br>
                 <h2>Hash Encoding</h2>
-                Backwards compatibility for sharing links to expressions is now broken since the <a href="https://en.wikipedia.org/wiki/Fragment_identifier">hash</a> must be <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent">encoded</a> to avoid trouble with special characters. This might also cause problems if you try to write an expression directly to the hash.
-            </div>                   
+                Backwards compatibility for sharing links to expressions is now broken since the <a
+                    href="https://en.wikipedia.org/wiki/Fragment_identifier">hash</a> must be <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent">encoded</a>
+                to avoid trouble with special characters. This might also cause problems if you try to write an
+                expression directly to the hash.
+            </div>
             <div class="extraSubBox news">
                 <span class="date">2017-12-10</span>
-                <h2>Syntax highlighting</h2>
+                <h2>Syntax Highlighting</h2>
                 Added syntax highlighting to the input box using
                 <a href="https://ace.c9.io/">Ace</a>.
-                <br> The highlighting language is currently set to Haskell so it might not make sense for JS code. However, I
+                <br> The highlighting language is currently set to Haskell so it might not make sense for JS code.
+                However, I
                 find Haskell more suitable for mathematical expressions since it's a more mathematical language.
             </div>
             <div class="extraSubBox news">
                 <span class="date">2017-12-05</span>
                 <h2>Simplification Update</h2>
-                a^(b/c) is now simplified to (a^b)^(1/c). This might seem stupid and sometimes it is but I think it's worth it for the times
+                a^(b/c) is now simplified to (a^b)^(1/c). This might seem stupid and sometimes it is but I think it's
+                worth it for the times
                 when a^b turns out to be something nice.
                 <br> a^b×a^c is now simplified to a^(b+c).
             </div>
             <div class="extraSubBox news">
                 <span class="date">2017-12-03</span>
-                <h2>a/1 simplified to a</h2>
+                <h2>a/1 Simplified to a</h2>
                 Another weird but not incorrect simplification fixed.
             </div>
             <div class="extraSubBox news">
@@ -357,8 +389,10 @@
             <div class="extraSubBox news">
                 <span class="date">2017-11-09</span>
                 <h2>Shorter Fractions</h2>
-                If there are zeros at the end of a numerator or a denominator, those can be cut off while moving the decimal point of the
-                denominator or the numerator respectively. Turn it on in the preferences and try something like 1751/7900
+                If there are zeros at the end of a numerator or a denominator, those can be cut off while moving the
+                decimal point of the
+                denominator or the numerator respectively. Turn it on in the preferences and try something like
+                1751/7900
                 to see how it works.
                 <br>
                 <br>
@@ -372,12 +406,16 @@
                 <br>
                 <br>
                 <h2>BigInt</h2>
-                I've always been using bigInts but they would usually turn into ordinary JS numbers in the simplification and were thus quite
+                I've always been using bigInts but they would usually turn into ordinary JS numbers in the
+                simplification and were thus quite
                 useless. This shouldn't be the case anymore.
-                <br> Working with bigInts means the calculator can handle arbitrarily big numbers and should avoid certain rounding
+                <br> Working with bigInts means the calculator can handle arbitrarily big numbers and should avoid
+                certain rounding
                 errors.
-                <br> Note that bigInts are used in the parsing and simplification only and still have to be converted to JS numbers
-                before the final answer is calculated. Thus, the answer cannot be arbitrarily big, even though the numbers
+                <br> Note that bigInts are used in the parsing and simplification only and still have to be converted to
+                JS numbers
+                before the final answer is calculated. Thus, the answer cannot be arbitrarily big, even though the
+                numbers
                 in the simplified expression can.
             </div>
             <div class="extraSubBox news">
@@ -393,7 +431,8 @@
                 <br>
                 <h2>Simplification Settings</h2>
                 Added settings so you can decide what happens if simplication seems wrong or takes too long time.
-                <br> When an expression is simplified, its answer will be compared to that of the raw expression unless it exceeds
+                <br> When an expression is simplified, its answer will be compared to that of the raw expression unless
+                it exceeds
                 your time limit.
             </div>
         </div>
@@ -412,16 +451,21 @@
 
     <div class="extraBox" id="about">
         <h1>About</h1>
-        <div id="aboutCollapseBtn" class="collapseBtn" onclick="toggleCollapse(aboutColEl, aboutBoxEl, aboutCollapsed)">></div>
+        <div id="aboutCollapseBtn" class="collapseBtn" onclick="toggleCollapse(aboutColEl, aboutBoxEl, aboutCollapsed)">
+            ></div>
         <div class="colBox" id="aboutBox">
-            This is a hobby project that I've been working on for a while. The original idea was to simplify expressions and use infinite
-            series to get rid of rounding errors. While it does try to simplify your expression (check it out below the enter
+            This is a hobby project that I've been working on for a while. The original idea was to simplify expressions
+            and use infinite
+            series to get rid of rounding errors. While it does try to simplify your expression (check it out below the
+            enter
             button), there's no infinite series magic going on behind the scenes... yet...
             <br> If you write π, it will simply use a predefined constant with a decent amount of decimal places.
             <br>
-            <br> Sooo - when will I do the series stuff? Well, first of all, the expression objects that your text input is parsed
+            <br> Sooo - when will I do the series stuff? Well, first of all, the expression objects that your text input
+            is parsed
             to kinda suck. Way too many strings and stuff.
-            <br> Second, I have <a href="https://github.com/Effektgubben/Noodle">another project</a> that I'm pretty excited about. My hope is that that project will provide a foundation for
+            <br> Second, I have <a href="https://github.com/Effektgubben/Noodle">another project</a> that I'm pretty
+            excited about. My hope is that that project will provide a foundation for
             building a new and more powerful calculator.
             <br>
             <br> Pro tip: don't write js(setTheme('darkOld'))
@@ -693,12 +737,19 @@
                 jsInd = str.indexOf("js(");
             }
 
+            //Turn dates into JS number representation
             var dateInd = str.indexOf("date");//📅(");
             var dateEnd;
             while (dateInd > -1) {
                 dateEnd = skipPars(str, dateInd + 4, true);
-                var dateStr = str.substring(dateInd + 5, dateEnd - 1) + ' gmt';
-                str = str.substring(0, dateInd) + Date.parse(dateStr) + str.substr(dateEnd);
+                var dateStr = str.substring(dateInd + 5, dateEnd - 1);
+                if (dateStr === 'now') {
+                    dateStr = Date.now();
+                }
+                else {
+                    dateStr = Date.parse(dateStr + ' gmt');
+                }
+                str = str.substring(0, dateInd) + dateStr + str.substr(dateEnd);
                 dateInd = str.indexOf("date(");
             }
 
