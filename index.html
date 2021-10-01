@@ -14,7 +14,6 @@
 
     <!-- import external stuff -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <!--<script src="http://peterolson.github.com/BigInteger.js/BigInteger.min.js"></script>-->
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js"></script>-->
     <script src="ace-src-min/ace.js"></script>
 
@@ -38,7 +37,7 @@
     <script src="vars.js"></script>
     <script src="toString.js"></script>
 
-    <script src="http://fxtend.herokuapp.com/Lyrics/Scripts/panelTransform.js"></script>
+    
 
 
 </head>
@@ -310,6 +309,12 @@
         <div id="newsCollapseBtn" class="collapseBtn" onclick="toggleCollapse(newsColEl, newsBoxEl, newsCollapsed)">>
         </div>
         <div class="colBox" id="newsBox">
+            <div class="extraSubBox news">
+                <span class="date">2021-10-01</span>
+                <h2>date() Bugfix</h2>
+                Dates with negative JS representations would previously mess up certain types of calculations.
+                
+            </div>
             <div class="extraSubBox news">
                 <span class="date">2021-09-24</span>
                 <h2>date() Fix and Improvement</h2>
@@ -747,7 +752,7 @@
                     dateStr = Date.now();
                 }
                 else {
-                    dateStr = Date.parse(dateStr + ' gmt');
+                    dateStr = '('+Date.parse(dateStr + ' gmt')+')';
                 }
                 str = str.substring(0, dateInd) + dateStr + str.substr(dateEnd);
                 dateInd = str.indexOf("date(");
