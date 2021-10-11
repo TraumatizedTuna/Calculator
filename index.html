@@ -310,6 +310,12 @@
         </div>
         <div class="colBox" id="newsBox">
             <div class="extraSubBox news">
+                <span class="date">2021-10-11</span>
+                <h2>date() Improvement</h2>
+                I ditched the 'now' keyword because '' is shorter. So, date() now returns the JS representation of the current time.
+                
+            </div>
+            <div class="extraSubBox news">
                 <span class="date">2021-10-01</span>
                 <h2>date() Bugfix</h2>
                 Dates with negative JS representations would previously mess up certain types of calculations.
@@ -748,7 +754,7 @@
             while (dateInd > -1) {
                 dateEnd = skipPars(str, dateInd + 4, true);
                 var dateStr = str.substring(dateInd + 5, dateEnd - 1);
-                if (dateStr === 'now') {
+                if (dateStr === '') {
                     dateStr = Date.now();
                 }
                 else {
