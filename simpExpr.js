@@ -189,7 +189,7 @@ function simpSum(expr) {
 
     //If there's no k in the expression the sum will be number of iterations times expression
     if (!containsVar(expr2, "k")) {
-        var diff = BigInt(calc(simpAdd(expr1, exprNeg(expr0))) + 1);
+        var diff = BigInt(calc(simpAdd(expr1, exprNeg(expr0))))+1n;
         if (diff < 0)
             diff = 0n;
         return simpMul(expr2, newNum(diff));
